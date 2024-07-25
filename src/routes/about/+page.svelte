@@ -4,6 +4,9 @@
 	import pointer from '$lib/images/pointer.png';
 	import sprite from '$lib/images/finalSprite.gif';
 	import { fly } from 'svelte/transition';
+	import Query from '$lib/Query.svelte';
+	import StatusDialog from '$lib/StatusDialog.svelte';
+	import Typewriter from 'svelte-typewriter';
 
 	let time = new Date();
 	let showEquipment = false;
@@ -19,6 +22,7 @@
 
 	// Replace with your last birthday date
 	const lastBirthday = new Date('2024-05-21');
+	const birthDay = new Date('2001-05-21');
 
 	function daysSince(date) {
 		const now = new Date();
@@ -26,8 +30,16 @@
 		return Math.floor(timeDiff / (1000 * 60 * 60 * 24)); // Convert milliseconds to days
 	}
 
+	function yearsSince(date) {
+		const now = new Date();
+		const timeDiff = now - date;
+		return Math.floor(timeDiff / (1000 * 60 * 60 * 24 * 365)); // Convert milliseconds to days
+	}
+
 	// Calculate days since last birthday
 	const daysSinceBirthday = daysSince(lastBirthday).toFixed(0);
+	const ageDays = daysSince(birthDay).toFixed(0);
+	const ageYears = yearsSince(birthDay).toFixed(0);
 
 	// Divide by 365 to get the number of years
 	const yearsSinceBirthday = 365 - daysSinceBirthday;
@@ -79,21 +91,27 @@
 					<div class="flex mt-5 justify-between">
 						<div class="flex">
 							<p class="pr-5 text-cyan-300">LV</p>
-							<p>23</p>
+							<p>{ageYears}</p>
 						</div>
-						<p>EXP: {365 - yearsSinceBirthday}</p>
+						<div class="flex space-x-5">
+							<p>EXP:</p>
+							<p>{365 - yearsSinceBirthday}</p>
+						</div>
 					</div>
 					<div class="flex mt-5 justify-between">
 						<div class="flex">
 							<p class="pr-5 text-cyan-300">HP</p>
-							<p>8464 / 8464</p>
+							<p>{ageDays}</p>
 						</div>
-						<p>EXP to Next Lvl: {yearsSinceBirthday.toFixed(0)}</p>
+						<div class="flex space-x-5">
+							<p>EXP to Next Lvl:</p>
+							<p>{yearsSinceBirthday.toFixed(0)}</p>
+						</div>
 					</div>
 					<div class="flex mt-5 justify-between">
 						<div class="flex">
 							<p class="pr-5 text-cyan-300">MP</p>
-							<p>93 / 93</p>
+							<Query />
 						</div>
 						<div class="w-2/3 bg-gray-200 rounded-full h-1.5 dark:bg-gray-700">
 							<div
@@ -118,11 +136,16 @@
 				{/if}
 
 				{#if showStatus}
-					<div class="m-5 flex justify-center" in:fly={{ x: -100 }} out:fly={{ x: -50 }}>
+					<div class="m-5 flex justify-center">
 						<div
-							class="flex justify-center font-minecraftia text-white space-y-7 [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)]"
+							class="flex justify-center font-minecraftia text-white [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)]"
 						>
-							<p>Hey! I'm Gazi, Thanks for visiting my personal website!</p>
+							<Typewriter class="flex" cursor={false} interval={70}>
+								<p>Hey! I'm Gazi</p>
+							</Typewriter>
+							<Typewriter cursor={false} interval={70} delay={3000}>
+								<p>, thanks for visiting my personal website!</p>
+							</Typewriter>
 						</div>
 					</div>
 				{/if}
