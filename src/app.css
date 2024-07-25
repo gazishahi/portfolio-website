@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	@font-face {
+		font-family: FinalFantasy;
+		font-weight: 400;
+		src: url(lib/fonts/OPTIEngeEtienne.woff) format('woff');
+	}
+	@font-face {
+		font-family: Minecraftia;
+		font-weight: 400;
+		src: url(lib/fonts/Minecraftia-Regular.ttf);
+	}
+	@font-face {
+		font-family: Pixeloid;
+		font-weight: 400;
+		src: url(lib/fonts/PixeloidSans.ttf);
+	}
+}
