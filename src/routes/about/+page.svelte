@@ -8,7 +8,6 @@
 	import { fade } from 'svelte/transition';
 	import Query from '$lib/Query.svelte';
 	import Typewriter from 'svelte-typewriter';
-	import { Sound } from 'svelte-sound';
 
 	let time = new Date();
 	let showAbilities = false;
