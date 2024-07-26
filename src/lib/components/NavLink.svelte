@@ -2,14 +2,11 @@
 	export let href;
 	export let text;
 	import pointer from '$lib/images/pointer.png';
-	import back from '$lib/audio/back.mp3';
-	import select from '$lib/audio/select.mp3';
-	import hover from '$lib/audio/hover.mp3';
 	import { Sound } from 'svelte-sound';
 
-	const backAudio = new Sound(back);
-	const selectAudio = new Sound(select);
-	const hoverAudio = new Sound(hover);
+	const backAudio = new Sound('/audio/back.mp3');
+	const selectAudio = new Sound('/audio/select.mp3');
+	const hoverAudio = new Sound('/audio/hover.mp3');
 
 	function playBack() {
 		backAudio.play();
