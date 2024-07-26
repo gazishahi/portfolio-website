@@ -14,8 +14,9 @@
 
 		<NavLink href="/about" text="About" />
 		<NavLink href="/projects" text="Quests" />
-		<NavLink href="/journal" text="Journal" />
+		<!-- <NavLink href="/journal" text="Journal" /> -->
 		<NavLink href="/contact" text="Party" />
+		<!-- <NavLink href="/test" text="Test" /> -->
 	</div>
 </div>
 

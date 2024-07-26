@@ -1,11 +1,9 @@
 <script>
 	import NavLink from '$lib/components/NavLink.svelte';
-	import Github from '$lib/images/github.svelte';
+	import summoner from '$lib/images/trace.svg';
 	import github from '$lib/images/github.png';
 	import linkedin from '$lib/images/linkedin.png';
 	import twitter from '$lib/images/xlogo.png';
-
-	let active = false;
 </script>
 
 <div class="flex items-center justify-center h-screen">
@@ -31,15 +29,14 @@
 				<NavLink href="https://x.com/gazishahi01" text="X (Twitter)" />
 				<img src={twitter} alt="X/Twitter" class="size-7 ml-2 group-hover:animate-pulse" />
 			</div>
-			<div>
-				<p
-					class="flex justify-center text-xl [text-shadow:_0_1px_0_rgb(0_0_0_/_60%)] font-minecraftia"
-				>
-					Summon
-				</p>
+			<div class="flex justify-center">
+				<NavLink href="/summon" text="Summon" />
+				<img src={summoner} alt="Summoner" class="size-7 ml-2 group-hover:animate-pulse" />
 			</div>
 
-			<NavLink href="/" text="Go back" />
+			<div class="border-t-4 border-slate-400 pt-2">
+				<NavLink href="/" text="Go back" />
+			</div>
 		</div>
 	</div>
 </div>

@@ -2,17 +2,24 @@
 	import NavLink from '$lib/components/NavLink.svelte';
 	import { onMount } from 'svelte';
 	import pointer from '$lib/images/pointer.png';
+	import pfp from '$lib/images/pfp.png';
 	import sprite from '$lib/images/finalSprite.gif';
 	import { fly } from 'svelte/transition';
+	import { fade } from 'svelte/transition';
 	import Query from '$lib/Query.svelte';
-	import StatusDialog from '$lib/StatusDialog.svelte';
 	import Typewriter from 'svelte-typewriter';
+	import select from '$lib/audio/select.mp3';
+	import hover from '$lib/audio/hover.mp3';
+	import { Sound } from 'svelte-sound';
 
 	let time = new Date();
-	let showEquipment = false;
 	let showAbilities = false;
-	let showStatus = false;
+	let showStatus = true;
 	let showJob = false;
+	let showPfp = false;
+
+	const selectAudio = new Sound(select);
+	const hoverAudio = new Sound(hover);
 
 	// these automatically update when `time`
 	// changes, because of the `$:` prefix
@@ -46,6 +53,12 @@
 	const birthdayPercentage = (100 * daysSinceBirthday) / 365;
 
 	onMount(() => {
+		requestAnimationFrame(() => {
+			setTimeout(() => {
+				showPfp = true;
+			}, 0);
+		});
+
 		const interval = setInterval(() => {
 			time = new Date();
 		}, 1000);
@@ -55,32 +68,40 @@
 		};
 	});
 
-	function toggleEquipment() {
-		showEquipment = !showEquipment;
-		showStatus = false;
-	}
-
 	function toggleAbilities() {
-		showAbilities = !showAbilities;
+		showAbilities = true;
+		showStatus = false;
+		showJob = false;
 	}
 
 	function toggleStatus() {
-		showStatus = !showStatus;
-		showEquipment = false;
+		showStatus = true;
+		showAbilities = false;
+		showJob = false;
 	}
 
 	function toggleJob() {
-		showJob = !showJob;
+		showJob = true;
+		showStatus = false;
+		showAbilities = false;
+	}
+
+	function playSelect() {
+		selectAudio.play();
+	}
+
+	function playHover() {
+		hoverAudio.play();
 	}
 </script>
 
 <div class="flex items-center justify-center h-screen">
-	<div class="flex rounded-lg size-11/12">
+	<div class="flex rounded-lg size-11/12 2xl:size-4/5">
 		<div class="w-4/5 mr-1">
 			<div
 				class="flex bg-gradient-to-t from-indigo-600 to-blue-500 border-4 border-slate-400 rounded-lg mb-1 h-1/3 w-full"
 			>
-				<img src={sprite} alt="Sprite" class="w-30 h-40 flex mt-5 ml-5" />
+				<img src={sprite} alt="Sprite" class="w-30 h-40 flex mt-8 ml-5" />
 				<div
 					class="m-5 text-xl text-white [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)] font-minecraftia w-full"
 				>
@@ -94,7 +115,7 @@
 							<p>{ageYears}</p>
 						</div>
 						<div class="flex space-x-5">
-							<p>EXP:</p>
+							<p>Current EXP:</p>
 							<p>{365 - yearsSinceBirthday}</p>
 						</div>
 					</div>
@@ -104,7 +125,7 @@
 							<p>{ageDays}</p>
 						</div>
 						<div class="flex space-x-5">
-							<p>EXP to Next Lvl:</p>
+							<p>To next level:</p>
 							<p>{yearsSinceBirthday.toFixed(0)}</p>
 						</div>
 					</div>
@@ -115,7 +136,7 @@
 						</div>
 						<div class="w-2/3 bg-gray-200 rounded-full h-1.5 dark:bg-gray-700">
 							<div
-								class="bg-yellow-300 h-1.5 rounded-full"
+								class="bg-gradient-to-r from-yellow-500 to-yellow-200 h-1.5 rounded-full"
 								style="width: {birthdayPercentage}%"
 							></div>
 						</div>
@@ -124,87 +145,336 @@
 			</div>
 
 			<div
-				class="flex justify-center bg-gradient-to-t from-indigo-600 to-blue-500 border-4 border-slate-400 rounded-lg mr-1 h-2/3 w-full"
+				class="bg-gradient-to-t from-indigo-600 to-blue-500 border-4 border-slate-400 rounded-lg mr-1 h-2/3 w-full relative"
 			>
-				{#if showEquipment}
-					<div class="flex justify-center" in:fly={{ x: -300 }} out:fly={{ x: -200 }}>
-						<div class="font-minecraftia text-white">
-							<p>PC</p>
-							<p>Processor: Ryzen 9 7900X</p>
-						</div>
-					</div>
-				{/if}
-
-				{#if showStatus}
-					<div class="m-5 flex justify-center">
+				<main>
+					{#if showStatus}
 						<div
-							class="flex justify-center font-minecraftia text-white [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)]"
+							class="el1 font-minecraftia text-white [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)]"
+							in:fly={{ x: 100, duration: 400, delay: 150 }}
+							out:fly={{ x: 100, duration: 400 }}
 						>
-							<Typewriter class="flex" cursor={false} interval={70}>
-								<p>Hey! I'm Gazi</p>
-							</Typewriter>
-							<Typewriter cursor={false} interval={70} delay={3000}>
-								<p>, thanks for visiting my personal website!</p>
-							</Typewriter>
+							<div class="flex justify-start">
+								{#if showPfp}
+									<img
+										src={pfp}
+										alt="ProfilePicture"
+										class="top-0 left-0 w-32 h-32 rounded-md border-2 border-slate-400 m-3"
+										transition:fade={{ delay: 800 }}
+									/>
+								{/if}
+								<div class="mt-5 flex relative">
+									<div
+										class="flex justify-start font-minecraftia text-white [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)] w-full whitespace-pre"
+									>
+										<Typewriter
+											class="flex"
+											cursor={false}
+											interval={30}
+											mode={'cascade'}
+											delay={1500}
+											disabled={!showStatus}
+										>
+											<div class="space-y-0 fix-text">
+												<p>Hey! I'm Gazi, thanks for visiting my personal website!</p>
+												<div class="flex whitespace-pre">
+													<p>I'm a software engineer at &nbsp;</p>
+													<a href="https://www.relayislam.com/" class="text-cyan-300">Relay</a>
+													<p>&nbsp; and a software engineering fellow at &nbsp;</p>
+													<a href="https://www.headstarter.co/" class="text-cyan-300">
+														Headstarter AI
+													</a>
+												</div>
+												<p>
+													with a passion for web and mobile development. Some things about me...
+												</p>
+											</div>
+										</Typewriter>
+									</div>
+								</div>
+							</div>
+							<div class="grid grid-cols-2 divide-x-2">
+								<div class="flex flex-col justify-start">
+									<Typewriter
+										cursor={false}
+										interval={30}
+										mode={'cascade'}
+										delay={9000}
+										disabled={!showStatus}
+									>
+										<div class="flex justify-between m-3">
+											<p>School:</p>
+											<p>The City College of New York</p>
+										</div>
+										<div class="flex justify-between m-3">
+											<p>Graduated:</p>
+											<p>December 2023</p>
+										</div>
+										<div class="flex justify-between m-3">
+											<p>Degree:</p>
+											<p>Bachelor's of Engineering</p>
+										</div>
+										<div class="flex justify-between m-3">
+											<p>Major:</p>
+											<p>Computer Engineering</p>
+										</div>
+									</Typewriter>
+								</div>
+								<div class="flex justify-start">
+									<Typewriter
+										cursor={false}
+										interval={30}
+										mode={'cascade'}
+										delay={13500}
+										disabled={!showStatus}
+									>
+										<div class="m-3 space-y-3">
+											<p>I like:</p>
+											<p>Listening to the voices in my head</p>
+											<p>Playing video games (pray I beat Elden Ring)</p>
+											<p>Running and working out</p>
+										</div>
+									</Typewriter>
+								</div>
+							</div>
+							<div class="m-3">
+								<Typewriter
+									cursor={false}
+									interval={30}
+									mode={'cascade'}
+									delay={17000}
+									disabled={!showStatus}
+								>
+									<p class="mb-1">Other things about me:</p>
+									<p class="leading-8">
+										Proud Muslim. Unfortunately a middle child. My typical form of media consumption
+										consists of pretentious video essays and tech news. Got an iOS app coming out
+										soon. Big fan of role-playing games like Final Fantasy, as you could probably
+										tell.
+									</p>
+								</Typewriter>
+							</div>
 						</div>
-					</div>
-				{/if}
-
-				{#if showAbilities}
-					<div
-						class="m-5 flex justify-center"
-						in:fly={{ delay: 100, x: -100 }}
-						out:fly={{ x: -50 }}
-					>
+					{:else if showAbilities}
 						<div
-							class="flex flex-col justify-center font-minecraftia text-white space-y-7 [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)]"
+							class="el1 m-5 flex justify-center"
+							in:fly={{ x: 100, duration: 400, delay: 150 }}
+							out:fly={{ x: 100, duration: 400 }}
 						>
-							<p>Python</p>
-							<p>C/C++</p>
-							<p>Java</p>
-							<p>JavaScript</p>
-							<p>React</p>
-							<p>Next.js</p>
+							<div
+								class="grid grid-cols-2 gap-x-20 font-minecraftia text-white [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)] w-full"
+							>
+								<div class="space-y-4">
+									<h1 class="text-xl">Languages</h1>
+									<div class="flex justify-between">
+										<p>Python</p>
+										<p class="text-cyan-300">LV4</p>
+									</div>
+									<div class="flex justify-between">
+										<p>C/C++</p>
+										<p class="text-cyan-300">LV7</p>
+									</div>
+									<div class="flex justify-between">
+										<p>Java</p>
+										<p class="text-cyan-300">LV2</p>
+									</div>
+									<div class="flex justify-between">
+										<p>JavaScript/TypeScript</p>
+										<p class="text-cyan-300">LV3</p>
+									</div>
+									<div class="flex justify-between">
+										<p>HTML/CSS</p>
+										<p class="text-cyan-300">LV3</p>
+									</div>
+									<div class="flex justify-between">
+										<p>Svelte</p>
+										<p class="text-cyan-300">LV1</p>
+									</div>
+									<div class="flex justify-between">
+										<p>Swift/SwiftUI</p>
+										<p class="text-cyan-300">LV3</p>
+									</div>
+									<div class="flex justify-between">
+										<p>SQL/PostgreSQL</p>
+										<p class="text-cyan-300">LV2</p>
+									</div>
+									<div class="flex justify-between">
+										<p>Solidity</p>
+										<p class="text-cyan-300">LV1</p>
+									</div>
+								</div>
+
+								<div class="space-y-4">
+									<h1 class="text-xl">Technologies</h1>
+									<div class="flex justify-between">
+										<p>React</p>
+										<p class="text-cyan-300">LV2</p>
+									</div>
+									<div class="flex justify-between">
+										<p>Next.js</p>
+										<p class="text-cyan-300">LV1</p>
+									</div>
+
+									<div class="flex justify-between">
+										<p>Amazon Web Services</p>
+										<p class="text-cyan-300">LV1</p>
+									</div>
+									<div class="flex justify-between">
+										<p>Node.js</p>
+										<p class="text-cyan-300">LV2</p>
+									</div>
+									<div class="flex justify-between">
+										<p>Spring Boot</p>
+										<p class="text-cyan-300">LV1</p>
+									</div>
+									<div class="flex justify-between">
+										<p>Docker</p>
+										<p class="text-cyan-300">LV1</p>
+									</div>
+									<div class="flex justify-between">
+										<p>Git/GitHub</p>
+										<p class="text-cyan-300">LV4</p>
+									</div>
+									<div class="flex justify-between">
+										<p>Android Studio</p>
+										<p class="text-cyan-300">LV2</p>
+									</div>
+									<div class="flex justify-between">
+										<p>Firebase</p>
+										<p class="text-cyan-300">LV2</p>
+									</div>
+								</div>
+							</div>
 						</div>
-					</div>
-				{/if}
+					{:else if showJob}
+						<div
+							class="el1 m-5 flex flex-col"
+							in:fly={{ x: 100, duration: 400, delay: 150 }}
+							out:fly={{ x: 100, duration: 400 }}
+						>
+							<div
+								class="grid grid-cols-12 justify-items-start gap-4 font-minecraftia text-white [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)] w-full"
+							>
+								<h1 class="col-span-12 text-xl">Current Jobs</h1>
+								<p class="col-span-5">Headstarter AI</p>
+								<p class="col-span-6">Software Engineering Fellow</p>
+								<p class="col-span-1">2024</p>
+
+								<p class="col-span-5">Relay</p>
+								<p class="col-span-6">Software Engineer</p>
+								<p class="col-span-1">2024</p>
+
+								<hr class="w-full mt-2 mb-5 col-span-12" />
+
+								<h1 class="col-span-12 text-xl">Completed Jobs</h1>
+								<p class="col-span-5">Tech Incubator at Queens College</p>
+								<p class="col-span-6">Software Developer Intern</p>
+								<p class="col-span-1">2023</p>
+
+								<p class="col-span-5">Research Foundation of CUNY</p>
+								<p class="col-span-6">Blockchain Researh Intern</p>
+								<p class="col-span-1">2023</p>
+
+								<p class="col-span-5">Google</p>
+								<p class="col-span-6">Computer Science Research Mentee</p>
+								<p class="col-span-1">2022</p>
+
+								<p class="col-span-5">CodePath</p>
+								<p class="col-span-6">Software Engineering Fellow</p>
+								<p class="col-span-1">2021</p>
+							</div>
+
+							<!-- <div
+								class="flex flex-col font-minecraftia text-white [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)]"
+							>
+								<div class="flex justify-between">
+									<p>Headstarter AI</p>
+									<p>Software Engineering Fellow</p>
+									<p>2024</p>
+								</div>
+
+								<div class="flex justify-between">
+									<p>Relay</p>
+									<p>Software Engineer</p>
+									<p>2024</p>
+								</div>
+
+								<div class="flex justify-between">
+									<p>Tech Incubator at Queens College</p>
+									<p>Software Developer Intern</p>
+									<p>2023</p>
+								</div>
+
+								<div class="flex justify-between">
+									<p>Research Foundation of CUNY</p>
+									<p>Blockchain Researh Intern</p>
+									<p>2023</p>
+								</div>
+
+								<div class="flex justify-between">
+									<p>Google</p>
+									<p>Computer Science Research Mentee</p>
+									<p>2022</p>
+								</div>
+
+								<div class="flex justify-between">
+									<p>CodePath</p>
+									<p>Software Engineering Fellow</p>
+									<p>2021</p>
+								</div>
+							</div> -->
+						</div>
+					{/if}
+				</main>
 			</div>
 		</div>
 
-		<div class="flex flex-col rounded-lg w-1/5">
+		<div class="flex flex-col rounded-lg h-full w-1/5">
 			<div
 				class="flex flex-col bg-gradient-to-t from-indigo-600 to-blue-500 text-white text-xl font-minecraftia justify-start border-4 border-slate-400 rounded-lg mb-1 h-2/3 w-full [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)]"
 			>
 				<div class="hover:show-pointer">
 					<button
-						on:click={toggleEquipment}
-						class="flex justify-start mt-5 ml-12 [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)]"
-						>Equipment</button
-					>
-					<img src={pointer} alt="pointer" class="pointer h-12 w-12" />
-				</div>
-				<div class="hover:show-pointer">
-					<button
+						on:click={playSelect}
+						on:mouseenter={playHover}
 						on:click={toggleStatus}
 						class="flex justify-start mt-5 ml-12 [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)]"
-						>Status</button
 					>
+						Status
+					</button>
 					<img src={pointer} alt="pointer" class="pointer h-12 w-12" />
 				</div>
 				<div class="hover:show-pointer">
 					<button
+						on:click={playSelect}
+						on:mouseenter={playHover}
 						on:click={toggleAbilities}
 						class="flex justify-start mt-5 ml-12 [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)]"
-						>Abilities</button
 					>
+						Abilities
+					</button>
 					<img src={pointer} alt="pointer" class="pointer h-12 w-12" />
 				</div>
 				<div class="hover:show-pointer">
 					<button
+						on:click={playSelect}
+						on:mouseenter={playHover}
 						on:click={toggleJob}
 						class="flex justify-start mt-5 ml-12 [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)]"
-						>Job</button
 					>
+						Job
+					</button>
+					<img src={pointer} alt="pointer" class="pointer h-12 w-12" />
+				</div>
+				<div class="hover:show-pointer">
+					<a
+						on:click={playSelect}
+						on:mouseenter={playHover}
+						class="flex justify-start mt-5 ml-12 [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)]"
+						href="https://drive.google.com/uc?export=download&id=1u8L-Qx-mPYAZt4AJTflaMnli-R2myBJk"
+					>
+						Resume
+					</a>
 					<img src={pointer} alt="pointer" class="pointer h-12 w-12" />
 				</div>
 			</div>
@@ -245,5 +515,24 @@
 		position: absolute;
 		transform: translateX(-100%);
 		transform: translateY(-80%); /* Adjust this value for spacing */
+	}
+
+	.el1,
+	.el2 {
+		height: 5em;
+		grid-column: 1/2;
+		grid-row: 1/2;
+	}
+
+	.fix-text {
+		white-space: pre;
+	}
+
+	main {
+		font-family: sans-serif;
+		text-align: start;
+		overflow: hidden;
+		height: 100%;
+		display: grid;
 	}
 </style>

@@ -30,15 +30,17 @@
 
 		<div class="flex h-full">
 			<div
-				class="mr-1 bg-gradient-to-t from-indigo-600 to-blue-500 border-4 border-slate-400 rounded-lg h-full w-1/3"
+				class="mr-1 bg-gradient-to-t from-indigo-600 to-blue-500 border-4 border-slate-400 rounded-lg h-full w-1/4"
 			>
-				<h2 class="m-5 font-minecraftia text-white text-xl [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)]">
+				<h2
+					class="mt-5 ml-5 mb-3 font-minecraftia text-white text-xl [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)]"
+				>
 					Ongoing Quests
 				</h2>
 
-				<div class="w-full space-y-2 flex flex-col justify-between pl-5">
+				<div class="w-full space-y-2 flex flex-col justify-between">
 					<div
-						class="hover:show-pointer pl-10 mb-1 w-11/12 font-minecraftia text-white text-md [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)] flex justify-start"
+						class="hover:show-pointer pl-5 mb-1 w-full font-minecraftia text-white text-md [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)] flex justify-start"
 					>
 						<button
 							on:click={toggleQuest1}
@@ -50,7 +52,7 @@
 					</div>
 
 					<div
-						class="hover:show-pointer pl-10 mb-1 w-11/12 font-minecraftia text-white text-md [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)] flex justify-start"
+						class="hover:show-pointer pl-5 mb-1 w-full font-minecraftia text-white text-md [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)] flex justify-start"
 					>
 						<button
 							on:click={toggleQuest2}
@@ -62,7 +64,7 @@
 					</div>
 
 					<div
-						class="hover:show-pointer pl-10 mb-1 w-11/12 font-minecraftia text-white text-md [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)] flex justify-start"
+						class="hover:show-pointer pl-5 mb-1 w-full font-minecraftia text-white text-md [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)] flex justify-start"
 					>
 						<button
 							on:click={toggleQuest3}
@@ -74,37 +76,41 @@
 					</div>
 				</div>
 
-				<hr class="w-full" size="2" />
-				<h2 class="m-5 font-minecraftia text-white text-xl [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)]">
+				<hr class="w-full mt-3" />
+				<h2
+					class="mt-7 m-5 font-minecraftia text-white text-xl [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)]"
+				>
 					Completed Quests
 				</h2>
 
-				<div class="w-full space-y-2 flex flex-col justify-between pl-5">
+				<div class="w-full space-y-2 flex flex-col justify-between">
 					<div
-						class="mb-1 w-11/12 font-minecraftia text-white text-md [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)] flex flex-col bg-gradient-to-t from-indigo-600 to-blue-500 border-4 border-slate-400 rounded-lg"
-					>
-						<button
-							on:click={toggleQuest2}
-							class="flex justify-center m-5 [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)]"
-						>
-							Relay Mobile Applications
-						</button>
-					</div>
-
-					<div
-						class="mb-1 w-11/12 font-minecraftia text-white text-md [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)] flex flex-col bg-gradient-to-t from-indigo-600 to-blue-500 border-4 border-slate-400 rounded-lg"
+						class="hover:show-pointer pl-5 mb-1 w-full font-minecraftia text-white text-md [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)] flex justify-start"
 					>
 						<button
 							on:click={toggleQuest3}
-							class="flex justify-center m-5 [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)]"
+							class=" flex justify-center m-5 [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)]"
 						>
 							CodeHive Frontend
 						</button>
+						<img src={pointer} alt="pointer" class="pointer h-12 w-12" />
+					</div>
+
+					<div
+						class="hover:show-pointer pl-5 mb-1 w-full font-minecraftia text-white text-md [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)] flex justify-start"
+					>
+						<button
+							on:click={toggleQuest3}
+							class=" flex justify-center m-5 [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)]"
+						>
+							CodeHive Frontend
+						</button>
+						<img src={pointer} alt="pointer" class="pointer h-12 w-12" />
 					</div>
 				</div>
 			</div>
 			<div
-				class="[text-shadow:_0_2px_0_rgb(0_0_0_/_60%)] relative my-component bg-gradient-to-t from-indigo-600 to-blue-500 border-4 border-slate-400 rounded-lg w-2/3"
+				class="[text-shadow:_0_2px_0_rgb(0_0_0_/_60%)] relative my-component bg-gradient-to-t from-indigo-600 to-blue-500 border-4 border-slate-400 rounded-lg w-3/4"
 			>
 				{#if showQuest1}
 					<div class="flex justify-center" in:fly={{ x: -300 }} out:fly={{ x: -200 }}>
