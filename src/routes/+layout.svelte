@@ -1,7 +1,6 @@
 <script>
 	import { browser } from '$app/environment';
 	import '../app.css';
-	import { Sound } from 'svelte-sound';
 	import { onNavigate } from '$app/navigation';
 	import { QueryClientProvider, QueryClient } from '@tanstack/svelte-query';
 
@@ -13,10 +12,7 @@
 		}
 	});
 
-	const bgAudio = new Sound(
-		'https://dl.dropboxusercontent.com/scl/fi/p7on4v9cwcr24bzzgk3o4/Adventure.mp3?rlkey=xh13ck0h73fe9x06a3878fqj1&st=dy6v4vbl&dl=0',
-		{ loop: true }
-	);
+	let bgAudio;
 
 	let showPlay = true;
 	let showPause = false;
@@ -27,7 +23,7 @@
 	}
 
 	function pauseSound() {
-		bgAudio.stop();
+		bgAudio.pause();
 		showPause = false;
 		showPlay = true;
 	}
@@ -45,6 +41,10 @@
 </script>
 
 <QueryClientProvider client={queryClient}>
+	<audio
+		bind:this={bgAudio}
+		src="https://dl.dropboxusercontent.com/scl/fi/p7on4v9cwcr24bzzgk3o4/Adventure.mp3?rlkey=xh13ck0h73fe9x06a3878fqj1&st=dy6v4vbl&dl=0"
+	/>
 	<div>
 		{#if showPlay}
 			<button class="absolute top-0 left-0" on:click={playSound}>

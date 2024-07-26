@@ -36,7 +36,6 @@
 	"dependencies": {
 		"@icons-pack/svelte-simple-icons": "^3.0.0",
 		"@tanstack/svelte-query": "^5.51.11",
-		"svelte-sound": "^0.6.0",
 		"svelte-typewriter": "^3.2.3"
 	}
 }

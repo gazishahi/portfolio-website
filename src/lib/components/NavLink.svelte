@@ -2,17 +2,42 @@
 	export let href;
 	export let text;
 	import pointer from '$lib/images/pointer.png';
-	import { Sound } from 'svelte-sound';
+	import { goto } from '$app/navigation';
 
-	const backAudio = new Sound(
-		'https://dl.dropbox.com/scl/fi/bu8n7hdggrxkizgcmipwc/back.mp3?rlkey=qi7oeyhsl340xp9cu15xasmwo&st=bfyz7oav&dl=0'
-	);
-	const selectAudio = new Sound(
-		'https://dl.dropbox.com/scl/fi/she6jhqo4wo6srv2eggbq/select.mp3?rlkey=sovfoc5p9w0e9ofhcgx0vx2wr&st=slwhv0m8&dl=0'
-	);
-	const hoverAudio = new Sound(
-		'https://dl.dropbox.com/scl/fi/fg8iy8n0yphtva3llyryb/hover.mp3?rlkey=pb3eo21yrj2sk36t4acla36ir&st=dcu7z1uh&dl=0'
-	);
+	let hoverAudio;
+	let selectAudio;
+	let backAudio;
+
+	const playAudioAndNavigate = (event, text, url) => {
+		event.preventDefault(); // Prevent the default link click behavior
+		if (text == 'Go back') {
+			backAudio.play().then(() => {
+				// Delay navigation to let the audio play for a short duration
+				setTimeout(() => {
+					if (url.startsWith('http')) {
+						// Navigate to external link
+						window.location.href = url;
+					} else {
+						// Navigate to internal route
+						goto(url);
+					}
+				}, 300); // Adjust the delay as needed
+			});
+		} else {
+			selectAudio.play().then(() => {
+				// Delay navigation to let the audio play for a short duration
+				setTimeout(() => {
+					if (url.startsWith('http')) {
+						// Navigate to external link
+						window.location.href = url;
+					} else {
+						// Navigate to internal route
+						goto(url);
+					}
+				}, 400); // Adjust the delay as needed
+			});
+		}
+	};
 
 	function playBack() {
 		backAudio.play();
@@ -27,10 +52,13 @@
 	}
 </script>
 
+<audio bind:this={selectAudio} src="/audio/select.mp3" />
+<audio bind:this={backAudio} src="/audio/back.mp3" />
+<audio bind:this={hoverAudio} src="/audio/hover.mp3" />
 <a
 	{href}
 	class="flex justify-center text-lg [text-shadow:_0_1px_0_rgb(0_0_0_/_60%)] font-minecraftia hover:show-pointer"
-	on:click={text == 'Go back' ? playBack : playSelect}
+	on:click={(event) => playAudioAndNavigate(event, text, href)}
 	on:mouseenter={playHover}
 >
 	<div class="flex">

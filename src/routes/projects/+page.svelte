@@ -2,7 +2,6 @@
 	import NavLink from '$lib/components/NavLink.svelte';
 	import { fly } from 'svelte/transition';
 	import pointer from '$lib/images/pointer.png';
-	import { Sound } from 'svelte-sound';
 	import github from '$lib/images/github.png';
 
 	let showQuest1 = false;
@@ -11,12 +10,9 @@
 
 	let completed = true;
 	let ongoing = false;
-	const selectAudio = new Sound(
-		'https://dl.dropbox.com/scl/fi/she6jhqo4wo6srv2eggbq/select.mp3?rlkey=sovfoc5p9w0e9ofhcgx0vx2wr&st=slwhv0m8&dl=0'
-	);
-	const hoverAudio = new Sound(
-		'https://dl.dropbox.com/scl/fi/fg8iy8n0yphtva3llyryb/hover.mp3?rlkey=pb3eo21yrj2sk36t4acla36ir&st=dcu7z1uh&dl=0'
-	);
+
+	let hoverAudio;
+	let selectAudio;
 
 	// Function to toggle the visibility
 	function toggleQuest1() {
@@ -47,6 +43,8 @@
 </script>
 
 <div class="flex items-center justify-center h-screen">
+	<audio bind:this={hoverAudio} src="/audio/hover.mp3" />
+	<audio bind:this={selectAudio} src="/audio/select.mp3" />
 	<div class="flex flex-col rounded-lg size-11/12">
 		<div
 			class="flex bg-gradient-to-t from-indigo-600 to-blue-500 border-4 border-slate-400 rounded-lg justify-center mb-1 text-2xl text-white [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)] font-minecraftia"

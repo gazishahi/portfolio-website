@@ -16,12 +16,8 @@
 	let showJob = false;
 	let showPfp = false;
 
-	const selectAudio = new Sound(
-		'https://dl.dropbox.com/scl/fi/she6jhqo4wo6srv2eggbq/select.mp3?rlkey=sovfoc5p9w0e9ofhcgx0vx2wr&st=slwhv0m8&dl=0'
-	);
-	const hoverAudio = new Sound(
-		'https://dl.dropbox.com/scl/fi/fg8iy8n0yphtva3llyryb/hover.mp3?rlkey=pb3eo21yrj2sk36t4acla36ir&st=dcu7z1uh&dl=0'
-	);
+	let hoverAudio;
+	let selectAudio;
 
 	// these automatically update when `time`
 	// changes, because of the `$:` prefix
@@ -95,9 +91,14 @@
 	function playHover() {
 		hoverAudio.play();
 	}
+	function stopHover() {
+		hoverAudio.pause();
+	}
 </script>
 
 <div class="flex items-center justify-center h-screen">
+	<audio bind:this={hoverAudio} src="/audio/hover.mp3" />
+	<audio bind:this={selectAudio} src="/audio/select.mp3" />
 	<div class="flex rounded-lg size-11/12 2xl:size-4/5">
 		<div class="w-4/5 mr-1">
 			<div
@@ -440,6 +441,7 @@
 					<button
 						on:click={playSelect}
 						on:mouseenter={playHover}
+						on:mouseleave={stopHover}
 						on:click={toggleStatus}
 						class="flex justify-start mt-5 ml-12 [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)]"
 					>

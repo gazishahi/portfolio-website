@@ -8,26 +8,19 @@
 	import { quadOut } from 'svelte/easing';
 	import { onMount } from 'svelte';
 	import Typewriter from 'svelte-typewriter';
-	import { Sound } from 'svelte-sound';
 
-	const runAudio = new Sound(
-		'https://dl.dropbox.com/scl/fi/9gjqc2cztsr9xu2r2ki51/running.mp3?rlkey=1usdnsxzxiqz30ld9kvg0bxjj&st=at8fqahb&dl=0'
-	);
-	const selectAudio = new Sound(
-		'https://dl.dropbox.com/scl/fi/she6jhqo4wo6srv2eggbq/select.mp3?rlkey=sovfoc5p9w0e9ofhcgx0vx2wr&st=slwhv0m8&dl=0'
-	);
-	const hoverAudio = new Sound(
-		'https://dl.dropbox.com/scl/fi/fg8iy8n0yphtva3llyryb/hover.mp3?rlkey=pb3eo21yrj2sk36t4acla36ir&st=dcu7z1uh&dl=0'
-	);
+	let hoverAudio;
+	let selectAudio;
+	let runAudio;
 
 	let showSprite = false;
 	let showForm = false;
 
+	let status = '';
+
 	function playRun() {
 		runAudio.play();
 	}
-
-	let status = '';
 
 	function playSelect() {
 		selectAudio.play();
@@ -77,6 +70,9 @@
 </script>
 
 <div class="full-screen-center">
+	<audio bind:this={hoverAudio} src="/audio/hover.mp3" />
+	<audio bind:this={selectAudio} src="/audio/select.mp3" />
+	<audio bind:this={runAudio} src="/audio/running.mp3" />
 	{#if !showSprite}
 		<div
 			transition:fade
@@ -147,7 +143,7 @@
 				{/if}
 			</div>
 			<div
-				class="flex flex-col justify-center space-y-4 text-white border-t-4 border-slate-400 pt-2 mb-2"
+				class="flex flex-col justify-center space-y-4 text-white border-t-4 border-slate-400 mb-2"
 			>
 				<NavLink href="/contact" text="Go back" />
 			</div>
@@ -172,10 +168,6 @@
 		align-items: center;
 		height: 100vh;
 		width: 100vw;
-	}
-
-	.hidden {
-		display: none;
 	}
 
 	.hover\:show-pointer:hover .pointer {
