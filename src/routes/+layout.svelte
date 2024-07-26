@@ -13,7 +13,10 @@
 		}
 	});
 
-	const bgAudio = new Sound('/audio/Adventure.mp3', { loop: true });
+	const bgAudio = new Sound(
+		'https://dl.dropboxusercontent.com/scl/fi/p7on4v9cwcr24bzzgk3o4/Adventure.mp3?rlkey=xh13ck0h73fe9x06a3878fqj1&st=dy6v4vbl&dl=0',
+		{ loop: true }
+	);
 
 	let showPlay = true;
 	let showPause = false;

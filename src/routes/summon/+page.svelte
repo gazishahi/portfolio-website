@@ -10,9 +10,15 @@
 	import Typewriter from 'svelte-typewriter';
 	import { Sound } from 'svelte-sound';
 
-	const runAudio = new Sound('/audio/running.mp3');
-	const selectAudio = new Sound('/audio/select.mp3');
-	const hoverAudio = new Sound('/audio/hover.mp3');
+	const runAudio = new Sound(
+		'https://dl.dropbox.com/scl/fi/9gjqc2cztsr9xu2r2ki51/running.mp3?rlkey=1usdnsxzxiqz30ld9kvg0bxjj&st=at8fqahb&dl=0'
+	);
+	const selectAudio = new Sound(
+		'https://dl.dropbox.com/scl/fi/she6jhqo4wo6srv2eggbq/select.mp3?rlkey=sovfoc5p9w0e9ofhcgx0vx2wr&st=slwhv0m8&dl=0'
+	);
+	const hoverAudio = new Sound(
+		'https://dl.dropbox.com/scl/fi/fg8iy8n0yphtva3llyryb/hover.mp3?rlkey=pb3eo21yrj2sk36t4acla36ir&st=dcu7z1uh&dl=0'
+	);
 
 	let showSprite = false;
 	let showForm = false;

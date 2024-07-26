@@ -16,8 +16,12 @@
 	let showJob = false;
 	let showPfp = false;
 
-	const selectAudio = new Sound('/audio/select.mp3');
-	const hoverAudio = new Sound('/audio/hover.mp3');
+	const selectAudio = new Sound(
+		'https://dl.dropbox.com/scl/fi/she6jhqo4wo6srv2eggbq/select.mp3?rlkey=sovfoc5p9w0e9ofhcgx0vx2wr&st=slwhv0m8&dl=0'
+	);
+	const hoverAudio = new Sound(
+		'https://dl.dropbox.com/scl/fi/fg8iy8n0yphtva3llyryb/hover.mp3?rlkey=pb3eo21yrj2sk36t4acla36ir&st=dcu7z1uh&dl=0'
+	);
 
 	// these automatically update when `time`
 	// changes, because of the `$:` prefix
@@ -470,7 +474,7 @@
 						on:click={playSelect}
 						on:mouseenter={playHover}
 						class="flex justify-start mt-5 ml-12 [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)]"
-						href="https://drive.google.com/uc?export=download&id=1u8L-Qx-mPYAZt4AJTflaMnli-R2myBJk"
+						href="https://dl.dropbox.com/scl/fi/gxrwno0lp8vgyzkh4iknz/Gazi-Shahi-Resume.pdf?rlkey=18kd5x54tohr1gn77jzrr1wa6&st=bins3mca&dl=0"
 					>
 						Resume
 					</a>

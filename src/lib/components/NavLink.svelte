@@ -4,9 +4,15 @@
 	import pointer from '$lib/images/pointer.png';
 	import { Sound } from 'svelte-sound';
 
-	const backAudio = new Sound('/audio/back.mp3');
-	const selectAudio = new Sound('/audio/select.mp3');
-	const hoverAudio = new Sound('/audio/hover.mp3');
+	const backAudio = new Sound(
+		'https://dl.dropbox.com/scl/fi/bu8n7hdggrxkizgcmipwc/back.mp3?rlkey=qi7oeyhsl340xp9cu15xasmwo&st=bfyz7oav&dl=0'
+	);
+	const selectAudio = new Sound(
+		'https://dl.dropbox.com/scl/fi/she6jhqo4wo6srv2eggbq/select.mp3?rlkey=sovfoc5p9w0e9ofhcgx0vx2wr&st=slwhv0m8&dl=0'
+	);
+	const hoverAudio = new Sound(
+		'https://dl.dropbox.com/scl/fi/fg8iy8n0yphtva3llyryb/hover.mp3?rlkey=pb3eo21yrj2sk36t4acla36ir&st=dcu7z1uh&dl=0'
+	);
 
 	function playBack() {
 		backAudio.play();
