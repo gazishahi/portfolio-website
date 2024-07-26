@@ -247,10 +247,10 @@
 								>
 									<p class="mb-1">Other things about me:</p>
 									<p class="leading-8">
-										Proud Muslim. Unfortunately a middle child. My typical form of media consumption
-										consists of pretentious video essays and tech news. Got an iOS app coming out
-										soon. Big fan of role-playing games like Final Fantasy, as you could probably
-										tell.
+										Proud Muslim. Bengali American. Unfortunately a middle child. My typical form of
+										media consumption consists of pretentious video essays, tech news, and games.
+										Got an iOS app coming out soon. Big fan of role-playing games like Final
+										Fantasy/Kingdom Hearts, as you could probably tell.
 									</p>
 								</Typewriter>
 							</div>
@@ -357,30 +357,30 @@
 							>
 								<h1 class="col-span-12 text-xl">Current Jobs</h1>
 								<p class="col-span-5">Headstarter AI</p>
-								<p class="col-span-6">Software Engineering Fellow</p>
+								<p class="col-span-6 text-cyan-300">Software Engineering Fellow</p>
 								<p class="col-span-1">2024</p>
 
 								<p class="col-span-5">Relay</p>
-								<p class="col-span-6">Software Engineer</p>
+								<p class="col-span-6 text-cyan-300">Software Engineer</p>
 								<p class="col-span-1">2024</p>
 
 								<hr class="w-full mt-2 mb-5 col-span-12" />
 
 								<h1 class="col-span-12 text-xl">Completed Jobs</h1>
 								<p class="col-span-5">Tech Incubator at Queens College</p>
-								<p class="col-span-6">Software Developer Intern</p>
+								<p class="col-span-6 text-cyan-300">Software Developer Intern</p>
 								<p class="col-span-1">2023</p>
 
 								<p class="col-span-5">Research Foundation of CUNY</p>
-								<p class="col-span-6">Blockchain Researh Intern</p>
+								<p class="col-span-6 text-cyan-300">Blockchain Researh Intern</p>
 								<p class="col-span-1">2023</p>
 
 								<p class="col-span-5">Google</p>
-								<p class="col-span-6">Computer Science Research Mentee</p>
+								<p class="col-span-6 text-cyan-300">Computer Science Research Mentee</p>
 								<p class="col-span-1">2022</p>
 
 								<p class="col-span-5">CodePath</p>
-								<p class="col-span-6">Software Engineering Fellow</p>
+								<p class="col-span-6 text-cyan-300">Software Engineering Fellow</p>
 								<p class="col-span-1">2021</p>
 							</div>
 

@@ -8,7 +8,7 @@
 
 <div class="flex items-center justify-center h-screen">
 	<div
-		class="flex flex-col bg-gradient-to-t from-indigo-600 to-blue-500 border-4 border-slate-400 rounded-lg w-1/3 h-1/2"
+		class="flex flex-col bg-gradient-to-t from-indigo-600 to-blue-500 border-4 border-slate-400 rounded-lg w-1/3 h-[380px]"
 	>
 		<div
 			class="flex justify-center m-5 text-2xl text-white [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)] font-minecraftia"

@@ -2,21 +2,47 @@
 	import NavLink from '$lib/components/NavLink.svelte';
 	import { fly } from 'svelte/transition';
 	import pointer from '$lib/images/pointer.png';
+	import select from '$lib/audio/select.mp3';
+	import hover from '$lib/audio/hover.mp3';
+	import { Sound } from 'svelte-sound';
+	import { onMount } from 'svelte';
+	import github from '$lib/images/github.png';
+
 	let showQuest1 = false;
 	let showQuest2 = false;
 	let showQuest3 = false;
 
+	let completed = true;
+	let ongoing = false;
+
+	const selectAudio = new Sound(select);
+	const hoverAudio = new Sound(hover);
+
 	// Function to toggle the visibility
 	function toggleQuest1() {
-		showQuest1 = !showQuest1;
+		showQuest1 = true;
+		showQuest2 = false;
+		showQuest3 = false;
 	}
 
 	function toggleQuest2() {
-		showQuest2 = !showQuest2;
+		showQuest1 = false;
+		showQuest2 = true;
+		showQuest3 = false;
 	}
 
 	function toggleQuest3() {
-		showQuest3 = !showQuest3;
+		showQuest1 = false;
+		showQuest2 = false;
+		showQuest3 = true;
+	}
+
+	function playSelect() {
+		selectAudio.play();
+	}
+
+	function playHover() {
+		hoverAudio.play();
 	}
 </script>
 
@@ -44,6 +70,8 @@
 					>
 						<button
 							on:click={toggleQuest1}
+							on:click={playSelect}
+							on:mouseenter={playHover}
 							class=" flex justify-center m-5 [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)]"
 						>
 							Headstarter AI Fellowship
@@ -56,6 +84,8 @@
 					>
 						<button
 							on:click={toggleQuest2}
+							on:click={playSelect}
+							on:mouseenter={playHover}
 							class=" flex justify-center m-5 [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)]"
 						>
 							Relay Mobile Applications
@@ -68,6 +98,8 @@
 					>
 						<button
 							on:click={toggleQuest3}
+							on:click={playSelect}
+							on:mouseenter={playHover}
 							class=" flex justify-center m-5 [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)]"
 						>
 							CodeHive Frontend
@@ -85,10 +117,33 @@
 
 				<div class="w-full space-y-2 flex flex-col justify-between">
 					<div
+						class="font-minecraftia text-white text-sm mx-5 [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)]"
+					>
+						<p class="leading-8">This section is currently being built! Stay tuned!</p>
+						<p class="leading-8">In the meantime, you can visit my GitHub:</p>
+						<div class="flex justify-center">
+							<a
+								href="https://github.com/gazishahi"
+								class=" w-1/2 text-white flex mt-3"
+								on:click={playSelect}
+								on:mouseenter={playHover}
+							>
+								<div
+									class="shadow-sm bg-blue-500 rounded-full flex justify-center p-3 transition-shadow hover:shadow-lg duration-300"
+								>
+									<img src={github} alt="GitHub" class="size-7 ml-2 group-hover:animate-pulse" />
+									<p class="mt-2 ml-4">GitHub</p>
+								</div>
+							</a>
+						</div>
+					</div>
+					<!-- <div
 						class="hover:show-pointer pl-5 mb-1 w-full font-minecraftia text-white text-md [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)] flex justify-start"
 					>
 						<button
 							on:click={toggleQuest3}
+							on:click={playSelect}
+							on:mouseenter={playHover}
 							class=" flex justify-center m-5 [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)]"
 						>
 							CodeHive Frontend
@@ -100,39 +155,136 @@
 						class="hover:show-pointer pl-5 mb-1 w-full font-minecraftia text-white text-md [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)] flex justify-start"
 					>
 						<button
-							on:click={toggleQuest3}
+							on:click={toggleQuest2}
+							on:click={playSelect}
+							on:mouseenter={playHover}
 							class=" flex justify-center m-5 [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)]"
 						>
 							CodeHive Frontend
 						</button>
 						<img src={pointer} alt="pointer" class="pointer h-12 w-12" />
-					</div>
+					</div> -->
 				</div>
 			</div>
-			<div
-				class="[text-shadow:_0_2px_0_rgb(0_0_0_/_60%)] relative my-component bg-gradient-to-t from-indigo-600 to-blue-500 border-4 border-slate-400 rounded-lg w-3/4"
+			<main
+				class="[text-shadow:_0_2px_0_rgb(0_0_0_/_60%)] justify-start relative my-component bg-gradient-to-t from-indigo-600 to-blue-500 border-4 border-slate-400 rounded-lg w-3/4"
 			>
 				{#if showQuest1}
-					<div class="flex justify-center" in:fly={{ x: -300 }} out:fly={{ x: -200 }}>
-						<div class="font-minecraftia text-white">
-							<h2>Complete 5 AI Projects</h2>
-							<p>Current: Portfolo</p>
+					<div
+						class="el1 m-7"
+						in:fly={{ x: 100, duration: 400, delay: 150 }}
+						out:fly={{ x: 100, duration: 400 }}
+					>
+						<div class="font-minecraftia text-white leading-10 space-y-5">
+							<h1>
+								The first week of the Headstarter AI Fellowship has begun. Throughout the next 7
+								weeks, I will pursue 5 quests in AI to enhance my mastery as a software engineer.
+								Here are the quests for this week:
+							</h1>
+
+							<div class="flex flex-col">
+								<h1 class="text-xl">Current:</h1>
+
+								<div class="flex">
+									<input type="checkbox" bind:checked={ongoing} disabled />
+									<p class="mt-3 ml-3">Summon an engineer</p>
+								</div>
+								<div class="flex">
+									<input type="checkbox" bind:checked={ongoing} disabled />
+									<p class="mt-3 ml-3">Test my skills in the trial interview</p>
+								</div>
+								<div class="flex">
+									<input type="checkbox" bind:checked={ongoing} disabled />
+									<p class="mt-3 ml-3">Share my journey</p>
+								</div>
+								<h1 class="text-xl mt-3">Completed:</h1>
+								<div class="flex">
+									<input type="checkbox" bind:checked={completed} disabled />
+									<p class="mt-3 ml-3">Find my party</p>
+								</div>
+								<div class="flex">
+									<input type="checkbox" bind:checked={completed} disabled />
+									<p class="mt-3 ml-3">Build my base (portfolio website)</p>
+								</div>
+								<h1 class="text-xl mt-3">Tech Stack:</h1>
+								<div class="flex flex-col">
+									<p class="mt-3">Frontend: Svelte + Tailwind CSS</p>
+								</div>
+							</div>
 						</div>
 					</div>
-				{/if}
-				{#if showQuest2}
-					<div class="flex justify-center" in:fly={{ x: -300 }} out:fly={{ x: -200 }}>
-						<div class="font-minecraftia text-white">
-							<h2>Build iOS App</h2>
-							<p>You can put any content here.</p>
+				{:else if showQuest2}
+					<div
+						class="el1 m-7"
+						in:fly={{ x: 100, duration: 400, delay: 150 }}
+						out:fly={{ x: 100, duration: 400 }}
+					>
+						<div class="font-minecraftia text-white leading-10 space-y-5">
+							<h1>
+								My allies and I have embarked on a journey to create a platform that will help those
+								who are struggling with their faith or do not have the means to learn the
+								fundamentals of Islam. Here is what we must do:
+							</h1>
+
+							<div class="flex flex-col">
+								<h1 class="text-xl">Current:</h1>
+								<div class="flex">
+									<input type="checkbox" bind:checked={ongoing} disabled />
+									<p class="mt-3 ml-3">Release iOS Application</p>
+								</div>
+								<div class="flex">
+									<input type="checkbox" bind:checked={ongoing} disabled />
+									<p class="mt-3 ml-3">Spread the word!</p>
+								</div>
+								<div class="flex">
+									<input type="checkbox" bind:checked={ongoing} disabled />
+									<p class="mt-3 ml-3">Commence Android development</p>
+								</div>
+								<h1 class="text-xl mt-3">Completed:</h1>
+								<div class="flex">
+									<input type="checkbox" bind:checked={completed} disabled />
+									<p class="mt-3 ml-3">Complete and submit v1.0 of iOS Application</p>
+								</div>
+
+								<h1 class="text-xl mt-3">Tech Stack:</h1>
+								<div class="flex flex-col">
+									<p class="mt-3">Frontend: SwiftUI</p>
+									<p class="mt-3">Backend: AWS via SST</p>
+								</div>
+							</div>
 						</div>
 					</div>
-				{/if}
-				{#if showQuest3}
-					<div class="flex justify-center" in:fly={{ x: -300 }} out:fly={{ x: -200 }}>
-						<div class="font-minecraftia text-white">
-							<h2>Redesign landing page using Figma Mockups</h2>
-							<p>You can put any content here.</p>
+				{:else if showQuest3}
+					<div
+						class="el1 m-7"
+						in:fly={{ x: 100, duration: 400, delay: 150 }}
+						out:fly={{ x: 100, duration: 400 }}
+					>
+						<div class="font-minecraftia text-white leading-10 space-y-5">
+							<h1>
+								My allies require my assistance! They have been working tireless to build a web
+								application that is designed to help those who are struggling with their technical
+								skills in software engineering. We are to build a collaborative platform that will
+								help them in their journey. Here is what we must do:
+							</h1>
+
+							<div class="flex flex-col">
+								<h1 class="text-xl">Current:</h1>
+								<div class="flex">
+									<input type="checkbox" bind:checked={ongoing} disabled />
+									<p class="mt-3 ml-3">Wait for your ally's signal (Jira ticket)</p>
+								</div>
+								<div class="flex">
+									<input type="checkbox" bind:checked={completed} disabled />
+									<p class="mt-3 ml-3">Commence renovations of ally's base</p>
+								</div>
+								<h1 class="text-xl mt-3">Tech Stack:</h1>
+								<div class="flex flex-col">
+									<p class="mt-3">Frontend: React</p>
+									<p class="mt-3">Backend: Spring Boot + Express.js</p>
+									<p class="mt-3">Database: DynamoDB+ Neo4j</p>
+								</div>
+							</div>
 						</div>
 					</div>
 				{/if}
@@ -141,12 +293,20 @@
 				>
 					<NavLink href="/" text="Go back" />
 				</div>
-			</div>
+			</main>
 		</div>
 	</div>
 </div>
 
 <style>
+	main {
+		font-family: sans-serif;
+		text-align: start;
+		overflow: hidden;
+		height: 100%;
+		display: grid;
+	}
+
 	.hidden {
 		display: none;
 	}
@@ -161,5 +321,11 @@
 		transform: translateX(-70%);
 		margin-top: 10px;
 		margin-left: 5px; /* Adjust this value for spacing */
+	}
+
+	.el1,
+	.el2 {
+		grid-column: 1/2;
+		grid-row: 1/2;
 	}
 </style>

@@ -2,6 +2,7 @@
 	import NavLink from '$lib/components/NavLink.svelte';
 	import sprite from '$lib/images/runSprite.gif';
 	import standingSprite from '$lib/images/standSprite.png';
+	import pointer from '$lib/images/pointer.png';
 	import pfp from '$lib/images/pfp.png';
 	import { fly } from 'svelte/transition';
 	import { fade } from 'svelte/transition';
@@ -9,15 +10,52 @@
 	import { onMount } from 'svelte';
 	import Typewriter from 'svelte-typewriter';
 	import running from '$lib/audio/running.mp3';
+	import select from '$lib/audio/select.mp3';
+	import hover from '$lib/audio/hover.mp3';
 	import { Sound } from 'svelte-sound';
 
 	const runAudio = new Sound(running);
+	const selectAudio = new Sound(select);
+	const hoverAudio = new Sound(hover);
 
 	let showSprite = false;
+	let showForm = false;
+	let showToast = false;
 
 	function playRun() {
 		runAudio.play();
 	}
+
+	let status = '';
+
+	function playSelect() {
+		selectAudio.play();
+	}
+
+	function playHover() {
+		hoverAudio.play();
+	}
+
+	const handleSubmit = async (data) => {
+		status = 'Submitting...';
+		const formData = new FormData(data.currentTarget);
+		const object = Object.fromEntries(formData);
+		const json = JSON.stringify(object);
+
+		const response = await fetch('https://api.web3forms.com/submit', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				Accept: 'application/json'
+			},
+			body: json
+		});
+		const result = await response.json();
+		if (result.success) {
+			console.log(result);
+			status = result.message || 'Success';
+		}
+	};
 
 	onMount(() => {
 		requestAnimationFrame(() => {
@@ -30,6 +68,9 @@
 			setTimeout(() => {
 				showSprite = false;
 			}, 2300);
+			setTimeout(() => {
+				showForm = true;
+			}, 4200);
 		});
 	});
 </script>
@@ -44,28 +85,66 @@
 				class="flex flex-col justify-start m-5 text-lg text-white [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)] font-minecraftia size-full relative w-full h-2/3"
 			>
 				<div class="flex justify-start space-x-3 mb-5">
-					<img
-						src={pfp}
-						alt="pfp"
-						class="w-32 h-32 top-0 left-0 rounded-md border-2 border-slate-400"
-					/>
-					<Typewriter class="flex" cursor={false} interval={30} mode={'cascade'} delay={800}>
-						<p class="pt-2">I'm here! How can I help?</p>
-					</Typewriter>
-				</div>
-				<form action="">
-					<label for="fname">First name:</label>
-					<input type="text" id="fname" name="fname" />
-					<br />
-					<br />
-					<label for="lname">Last name:</label>
-					<input type="text" id="lname" name="lname" />
-					<br />
-					<br />
-					<input type="submit" value="Submit" />
-				</form>
-			</div>
+					<p>Gazi:</p>
 
+					<Typewriter class="flex" cursor={false} interval={30} mode={'cascade'} delay={800}>
+						<p class="">I'm here! How can I help?</p>
+					</Typewriter>
+					{#if status == 'Email sent successfully!'}
+						<Typewriter class="flex" cursor={false} interval={30} mode={'cascade'}>
+							<p>Got it! I'll get back to you soon!</p>
+						</Typewriter>
+					{/if}
+				</div>
+
+				{#if showForm}
+					<div in:fade={{ delay: 500 }} class="flex justify-evenly">
+						<form on:submit|preventDefault={handleSubmit}>
+							<input type="hidden" name="access_key" value="d85fff2d-1948-4f8e-aad4-4657ecfb0062" />
+
+							<div class="flex flex-col">
+								<div class="flex justify-evenly space-x-10 pb-3">
+									<div>
+										<p>Name</p>
+										<input
+											class="text-black py-2 indent-4 rounded-lg font-pixeloid"
+											type="text"
+											name="name"
+											required
+										/>
+									</div>
+
+									<div>
+										<p>Email</p>
+										<input
+											class="text-black py-2 indent-4 rounded-lg font-pixeloid"
+											type="text"
+											name="email"
+											required
+										/>
+									</div>
+								</div>
+								<textarea
+									name="message"
+									required
+									rows="3"
+									class="flex justify-center w-full h-1/2 text-black py-2 mb-3 indent-4 rounded-lg font-pixeloid"
+								></textarea>
+								<div class="hover:show-pointer flex justify-center">
+									<input
+										on:click={playSelect}
+										on:mouseenter={playHover}
+										class="hover:animate-pulse [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)] font-minecraftia py-3"
+										type="submit"
+									/>
+									<img src={pointer} alt="pointer" class="pointer h-12 w-12" />
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="flex justify-center">{status}</div>
+				{/if}
+			</div>
 			<div
 				class="flex flex-col justify-center space-y-4 text-white border-t-4 border-slate-400 pt-2 mb-2"
 			>
@@ -92,5 +171,21 @@
 		align-items: center;
 		height: 100vh;
 		width: 100vw;
+	}
+
+	.hidden {
+		display: none;
+	}
+
+	.hover\:show-pointer:hover .pointer {
+		display: block;
+	}
+
+	.pointer {
+		display: none;
+		position: absolute;
+		transform: translateX(-70%);
+
+		margin-left: -50px; /* Adjust this value for spacing */
 	}
 </style>
