@@ -13,9 +13,7 @@
 		}
 	});
 
-	import song1 from '$lib/audio/Adventure.mp3';
-
-	const bgAudio = new Sound(song1, { loop: true });
+	const bgAudio = new Sound('/audio/Adventure.mp3', { loop: true });
 
 	let showPlay = true;
 	let showPause = false;

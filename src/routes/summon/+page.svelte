@@ -3,24 +3,19 @@
 	import sprite from '$lib/images/runSprite.gif';
 	import standingSprite from '$lib/images/standSprite.png';
 	import pointer from '$lib/images/pointer.png';
-	import pfp from '$lib/images/pfp.png';
 	import { fly } from 'svelte/transition';
 	import { fade } from 'svelte/transition';
 	import { quadOut } from 'svelte/easing';
 	import { onMount } from 'svelte';
 	import Typewriter from 'svelte-typewriter';
-	import running from '$lib/audio/running.mp3';
-	import select from '$lib/audio/select.mp3';
-	import hover from '$lib/audio/hover.mp3';
 	import { Sound } from 'svelte-sound';
 
-	const runAudio = new Sound(running);
-	const selectAudio = new Sound(select);
-	const hoverAudio = new Sound(hover);
+	const runAudio = new Sound('/audio/running.mp3');
+	const selectAudio = new Sound('/audio/select.mp3');
+	const hoverAudio = new Sound('/audio/hover.mp3');
 
 	let showSprite = false;
 	let showForm = false;
-	let showToast = false;
 
 	function playRun() {
 		runAudio.play();

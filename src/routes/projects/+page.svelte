@@ -2,10 +2,7 @@
 	import NavLink from '$lib/components/NavLink.svelte';
 	import { fly } from 'svelte/transition';
 	import pointer from '$lib/images/pointer.png';
-	import select from '$lib/audio/select.mp3';
-	import hover from '$lib/audio/hover.mp3';
 	import { Sound } from 'svelte-sound';
-	import { onMount } from 'svelte';
 	import github from '$lib/images/github.png';
 
 	let showQuest1 = false;
@@ -15,8 +12,8 @@
 	let completed = true;
 	let ongoing = false;
 
-	const selectAudio = new Sound(select);
-	const hoverAudio = new Sound(hover);
+	const selectAudio = new Sound('/audio/select.mp3');
+	const hoverAudio = new Sound('/audio/hover.mp3');
 
 	// Function to toggle the visibility
 	function toggleQuest1() {
@@ -121,20 +118,19 @@
 					>
 						<p class="leading-8">This section is currently being built! Stay tuned!</p>
 						<p class="leading-8">In the meantime, you can visit my GitHub:</p>
-						<div class="flex justify-center">
+						<div class="flex justify-center hover:show-pointer">
 							<a
 								href="https://github.com/gazishahi"
-								class=" w-1/2 text-white flex mt-3"
+								class=" w-2/5 text-white flex mt-1 p-2 shadow-sm bg-blue-500 rounded-full transition-shadow hover:shadow-lg duration-300"
 								on:click={playSelect}
 								on:mouseenter={playHover}
 							>
-								<div
-									class="shadow-sm bg-blue-500 rounded-full flex justify-center p-3 transition-shadow hover:shadow-lg duration-300"
-								>
-									<img src={github} alt="GitHub" class="size-7 ml-2 group-hover:animate-pulse" />
-									<p class="mt-2 ml-4">GitHub</p>
+								<div class="flex space-x-3 justify-evenly">
+									<img src={github} alt="GitHub" class="size-7 group-hover:animate-pulse" />
+									<p class="mt-2">GitHub</p>
 								</div>
 							</a>
+							<img src={pointer} alt="pointer" class="pointer h-12 w-12 mr-28" />
 						</div>
 					</div>
 					<!-- <div
@@ -307,10 +303,6 @@
 		display: grid;
 	}
 
-	.hidden {
-		display: none;
-	}
-
 	.hover\:show-pointer:hover .pointer {
 		display: block;
 	}
@@ -323,8 +315,7 @@
 		margin-left: 5px; /* Adjust this value for spacing */
 	}
 
-	.el1,
-	.el2 {
+	.el1 {
 		grid-column: 1/2;
 		grid-row: 1/2;
 	}

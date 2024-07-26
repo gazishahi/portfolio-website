@@ -1,7 +1,5 @@
 <script>
-	import { sound } from 'svelte-sound';
 	import NavLink from '$lib/components/NavLink.svelte';
-	import { fade } from 'svelte/transition';
 </script>
 
 <div class="flex flex-col items-center justify-center h-screen bg-white overflow-hidden">

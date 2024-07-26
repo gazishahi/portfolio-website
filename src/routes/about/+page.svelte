@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import NavLink from '$lib/components/NavLink.svelte';
 	import { onMount } from 'svelte';
 	import pointer from '$lib/images/pointer.png';
@@ -8,8 +8,6 @@
 	import { fade } from 'svelte/transition';
 	import Query from '$lib/Query.svelte';
 	import Typewriter from 'svelte-typewriter';
-	import select from '$lib/audio/select.mp3';
-	import hover from '$lib/audio/hover.mp3';
 	import { Sound } from 'svelte-sound';
 
 	let time = new Date();
@@ -18,8 +16,8 @@
 	let showJob = false;
 	let showPfp = false;
 
-	const selectAudio = new Sound(select);
-	const hoverAudio = new Sound(hover);
+	const selectAudio = new Sound('/audio/select.mp3');
+	const hoverAudio = new Sound('/audio/hover.mp3');
 
 	// these automatically update when `time`
 	// changes, because of the `$:` prefix
@@ -250,7 +248,8 @@
 										Proud Muslim. Bengali American. Unfortunately a middle child. My typical form of
 										media consumption consists of pretentious video essays, tech news, and games.
 										Got an iOS app coming out soon. Big fan of role-playing games like Final
-										Fantasy/Kingdom Hearts, as you could probably tell.
+										Fantasy/Kingdom Hearts, as you could probably tell. And of course, I am super
+										excited about becoming an AI engineer.
 									</p>
 								</Typewriter>
 							</div>
@@ -517,8 +516,7 @@
 		transform: translateY(-80%); /* Adjust this value for spacing */
 	}
 
-	.el1,
-	.el2 {
+	.el1 {
 		height: 5em;
 		grid-column: 1/2;
 		grid-row: 1/2;
