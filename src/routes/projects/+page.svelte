@@ -47,7 +47,7 @@
 	<audio bind:this={selectAudio} src="/audio/select.mp3" />
 	<div class="flex flex-col rounded-lg size-11/12">
 		<div
-			class="flex bg-gradient-to-t from-indigo-600 to-blue-500 border-4 border-slate-400 rounded-lg justify-center mb-1 text-2xl text-white [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)] font-minecraftia"
+			class="flex bg-gradient-to-t from-indigo-600 to-blue-500 border-4 border-slate-400 rounded-lg justify-center mb-1 text-lg md:text-2xl text-white [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)] font-minecraftia"
 		>
 			<p class="mt-3">Quests</p>
 		</div>

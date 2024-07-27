@@ -8,10 +8,10 @@
 
 <div class="flex items-center justify-center h-screen">
 	<div
-		class="flex flex-col bg-gradient-to-t from-indigo-600 to-blue-500 border-4 border-slate-400 rounded-lg w-1/3 h-[380px]"
+		class="flex flex-col bg-gradient-to-t from-indigo-600 to-blue-500 border-4 border-slate-400 rounded-lg w-11/12 sm:w-1/2 md:w-1/2 lg:w-5/12 xl:w-1/4 h-5/12"
 	>
 		<div
-			class="flex justify-center m-5 text-2xl text-white [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)] font-minecraftia"
+			class="flex justify-center m-5 text-xl md:text-2xl text-white [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)] font-minecraftia"
 		>
 			<p>Add me to your party</p>
 		</div>

@@ -5,7 +5,7 @@
 <div class="flex flex-col items-center justify-center h-screen bg-white overflow-hidden">
 	<div class="space-y-4">
 		<h1
-			class="flex text-9xl font-finalFantasy justify-center underline decoration-8 mb-24 tracking-wider text-outline"
+			class="flex text-8xl md:text-9xl font-finalFantasy justify-center underline decoration-8 mb-24 tracking-wider text-outline"
 		>
 			GAZI SHAHI
 		</h1>

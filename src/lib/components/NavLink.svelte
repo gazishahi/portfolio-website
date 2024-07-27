@@ -57,7 +57,7 @@
 <audio bind:this={hoverAudio} src="/audio/hover.mp3" />
 <a
 	{href}
-	class="flex justify-center text-lg [text-shadow:_0_1px_0_rgb(0_0_0_/_60%)] font-minecraftia hover:show-pointer"
+	class="flex justify-center text-sm md:text-lg [text-shadow:_0_1px_0_rgb(0_0_0_/_60%)] font-minecraftia hover:show-pointer"
 	on:click={(event) => playAudioAndNavigate(event, text, href)}
 	on:mouseenter={playHover}
 >
