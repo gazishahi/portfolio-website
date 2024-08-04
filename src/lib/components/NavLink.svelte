@@ -14,13 +14,8 @@
 			backAudio.play().then(() => {
 				// Delay navigation to let the audio play for a short duration
 				setTimeout(() => {
-					if (url.startsWith('http')) {
-						// Navigate to external link
-						window.location.href = url;
-					} else {
-						// Navigate to internal route
-						goto(url);
-					}
+					// Navigate to internal route
+					goto(url);
 				}, 300); // Adjust the delay as needed
 			});
 		} else {
@@ -29,7 +24,8 @@
 				setTimeout(() => {
 					if (url.startsWith('http')) {
 						// Navigate to external link
-						window.location.href = url;
+
+						window.open(url, '_blank');
 					} else {
 						// Navigate to internal route
 						goto(url);
@@ -57,6 +53,8 @@
 <audio bind:this={hoverAudio} src="/audio/hover.mp3" />
 <a
 	{href}
+	target="_blank"
+	rel="noopener noreferrer"
 	class="flex justify-center text-sm md:text-lg [text-shadow:_0_1px_0_rgb(0_0_0_/_60%)] font-minecraftia hover:show-pointer"
 	on:click={(event) => playAudioAndNavigate(event, text, href)}
 	on:mouseenter={playHover}

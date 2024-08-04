@@ -52,9 +52,9 @@
 			<p class="mt-3">Quests</p>
 		</div>
 
-		<div class="flex h-full">
+		<div class="md:flex h-full">
 			<div
-				class="mr-1 bg-gradient-to-t from-indigo-600 to-blue-500 border-4 border-slate-400 rounded-lg h-full w-1/4"
+				class="mr-1 bg-gradient-to-t from-indigo-600 to-blue-500 border-4 border-slate-400 rounded-lg h-full w-full md:w-1/4"
 			>
 				<h2
 					class="mt-5 ml-5 mb-3 font-minecraftia text-white text-xl [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)]"
@@ -164,7 +164,7 @@
 				</div>
 			</div>
 			<main
-				class="[text-shadow:_0_2px_0_rgb(0_0_0_/_60%)] justify-start relative my-component bg-gradient-to-t from-indigo-600 to-blue-500 border-4 border-slate-400 rounded-lg w-3/4"
+				class="[text-shadow:_0_2px_0_rgb(0_0_0_/_60%)] justify-start relative my-component bg-gradient-to-t from-indigo-600 to-blue-500 border-4 border-slate-400 rounded-lg md:w-3/4"
 			>
 				{#if showQuest1}
 					<div

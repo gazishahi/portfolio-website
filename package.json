@@ -34,7 +34,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@icons-pack/svelte-simple-icons": "^3.0.0",
+		"@svelte-plugins/tooltips": "^3.0.1",
 		"@tanstack/svelte-query": "^5.51.11",
 		"svelte-typewriter": "^3.2.3"
 	}
