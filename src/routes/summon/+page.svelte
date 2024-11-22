@@ -87,7 +87,7 @@
 						<Typewriter
 							class="flex flex-col"
 							cursor={false}
-							interval={30}
+							interval={15}
 							mode={'cascade'}
 							delay={800}
 						>
@@ -102,7 +102,7 @@
 				</div>
 
 				{#if showForm}
-					<div in:fade={{ delay: 500 }} class="flex justify-evenly w-full">
+					<div in:fade={{ delay: 450 }} class="flex justify-evenly w-full">
 						<form
 							on:submit|preventDefault={handleSubmit}
 							class="w-full flex flex-col justify-center"

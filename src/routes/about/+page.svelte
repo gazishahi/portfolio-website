@@ -235,7 +235,7 @@
 											<Typewriter
 												class="flex"
 												cursor={false}
-												interval={20}
+												interval={5}
 												mode={'cascade'}
 												delay={1500}
 											>
@@ -278,9 +278,9 @@
 									{#if typing}
 										<Typewriter
 											cursor={false}
-											interval={10}
+											interval={5}
 											mode={'cascade'}
-											delay={7000}
+											delay={3000}
 											disabled={!showStatus}
 										>
 											<div class="flex justify-between m-3">
@@ -325,15 +325,15 @@
 									{#if typing}
 										<Typewriter
 											cursor={false}
-											interval={10}
+											interval={5}
 											mode={'cascade'}
-											delay={9000}
+											delay={4000}
 											disabled={!showStatus}
 										>
 											<div class="m-3 space-y-3">
 												<p>I like:</p>
 												<p>Listening to the voices in my head</p>
-												<p>Playing video games (pray I beat Elden Ring)</p>
+												<p>Playing video games (playing Jedi Survivor)</p>
 												<p>Running and working out</p>
 											</div>
 										</Typewriter>
@@ -351,9 +351,9 @@
 								{#if typing}
 									<Typewriter
 										cursor={false}
-										interval={20}
+										interval={5}
 										mode={'cascade'}
-										delay={11000}
+										delay={5000}
 										disabled={!showStatus}
 										on:done={completeTyping}
 									>
@@ -371,9 +371,9 @@
 									<p class="leading-8">
 										Proud Muslim. Bengali American. Unfortunately, a middle child. My typical form
 										of media consumption consists of pretentious video essays, tech news, and games.
-										Got an iOS app coming out soon. Big fan of role-playing games like Final
-										Fantasy/Kingdom Hearts, as you could probably tell. And of course, I am super
-										excited about becoming an AI engineer.
+										Released the Relay iOS app. Big fan of role-playing games like Final
+										Fantasy/Kingdom Hearts, as you could probably tell. Working on some startup
+										stuff.
 									</p>
 								{/if}
 							</div>
@@ -432,6 +432,10 @@
 										<p>Solidity</p>
 										<p class="text-cyan-300">LV1</p>
 									</div>
+									<div class="flex justify-between">
+										<p>Kotlin</p>
+										<p class="text-cyan-300">LV1</p>
+									</div>
 								</div>
 
 								<div class="space-y-4">
@@ -486,12 +490,12 @@
 								class="grid grid-cols-12 justify-items-start gap-4 font-minecraftia text-white [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)] w-full"
 							>
 								<h1 class="col-span-12 text-xl">Current Jobs</h1>
-								<p class="col-span-5">Headstarter AI</p>
-								<p class="col-span-6 text-cyan-300">Software Engineering Fellow</p>
-								<p class="col-span-1">2024</p>
-
 								<p class="col-span-5">Relay</p>
 								<p class="col-span-6 text-cyan-300">Software Engineer</p>
+								<p class="col-span-1">2024</p>
+
+								<p class="col-span-5">Headstarter AI</p>
+								<p class="col-span-6 text-cyan-300">Software Engineering Fellow</p>
 								<p class="col-span-1">2024</p>
 
 								<hr class="w-full mt-2 mb-5 col-span-12" />
@@ -635,8 +639,10 @@
 				</div>
 
 				<div class="ml-5 mr-5 mt-5 mb-5 flex justify-between">
-					<p>Gil</p>
-					<p>0</p>
+					<Tooltip arrow={false} animation="fade" content="LeetCode Problems Solved">
+						<p>Gil</p>
+					</Tooltip>
+					<p>65</p>
 				</div>
 				<div class="pt-3 pb-3 flex justify-center border-t-4 border-slate-400">
 					<NavLink href="/" text="Go back" />
