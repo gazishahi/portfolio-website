@@ -642,7 +642,7 @@
 					<Tooltip arrow={false} animation="fade" content="LeetCode Problems Solved">
 						<p>Gil</p>
 					</Tooltip>
-					<p>69</p>
+					<p>70</p>
 				</div>
 				<div class="pt-3 pb-3 flex justify-center border-t-4 border-slate-400">
 					<NavLink href="/" text="Go back" />
