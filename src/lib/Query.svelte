@@ -29,6 +29,6 @@
 		{$query.error.message}
 	{/if}
 	{#if $query.isSuccess}
-		<p>{$query.data.total['2024']} / {totalContributions}</p>
+		<p>{$query.data.total['2025']} / {totalContributions}</p>
 	{/if}
 </div>
