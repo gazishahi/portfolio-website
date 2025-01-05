@@ -180,20 +180,6 @@
 							</h1>
 
 							<div class="flex flex-col">
-								<h1 class="text-xl">Current:</h1>
-
-								<div class="flex">
-									<input type="checkbox" bind:checked={ongoing} disabled />
-									<p class="mt-3 ml-3">Summon an engineer</p>
-								</div>
-								<div class="flex">
-									<input type="checkbox" bind:checked={ongoing} disabled />
-									<p class="mt-3 ml-3">Test my skills in the trial interview</p>
-								</div>
-								<div class="flex">
-									<input type="checkbox" bind:checked={ongoing} disabled />
-									<p class="mt-3 ml-3">Share my journey</p>
-								</div>
 								<h1 class="text-xl mt-3">Completed:</h1>
 								<div class="flex">
 									<input type="checkbox" bind:checked={completed} disabled />
