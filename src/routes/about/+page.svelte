@@ -283,7 +283,7 @@
 			</div>
 
 			<div
-				class="bg-gradient-to-t from-indigo-600 text-sm md:text-md to-blue-500 border-4 border-slate-400 rounded-lg mr-1 md:h-2/3 xl:h-1/2 h-[440px] w-full relative mb-1 md:mb-0"
+				class="bg-gradient-to-t from-indigo-600 text-sm md:text-md to-blue-500 border-4 border-slate-400 rounded-lg mr-1 md:h-2/3 xl:h-1/2 h-[460px] w-full relative mb-1 md:mb-0"
 			>
 				<main>
 					{#if showStatus}
@@ -443,10 +443,10 @@
 							out:fly={{ x: 100, duration: 400 }}
 						>
 							<div
-								class=" grid grid-cols-2 gap-x-20 font-minecraftia text-white [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)] w-full"
+								class="grid grid-cols-2 gap-x-5 md:gap-x-20 font-minecraftia text-white [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)] w-full"
 							>
 								<div class="space-y-4">
-									<h1 class="text-xl">Languages</h1>
+									<h1 class="text-lg md:text-xl mt-4">Languages</h1>
 									<div class="flex justify-between">
 										<p>Python</p>
 										<p class="text-cyan-300">LV4</p>
@@ -460,7 +460,7 @@
 										<p class="text-cyan-300">LV2</p>
 									</div>
 									<div class="flex justify-between">
-										<p>JavaScript/TypeScript</p>
+										<p>JavaScript/ TypeScript</p>
 										<p class="text-cyan-300">LV3</p>
 									</div>
 									<div class="flex justify-between">
@@ -472,11 +472,11 @@
 										<p class="text-cyan-300">LV1</p>
 									</div>
 									<div class="flex justify-between">
-										<p>Swift/SwiftUI</p>
+										<p>Swift/ SwiftUI</p>
 										<p class="text-cyan-300">LV3</p>
 									</div>
 									<div class="flex justify-between">
-										<p>SQL/PostgreSQL</p>
+										<p>SQL/ PostgreSQL</p>
 										<p class="text-cyan-300">LV2</p>
 									</div>
 									<div class="flex justify-between">
@@ -490,7 +490,7 @@
 								</div>
 
 								<div class="space-y-4">
-									<h1 class="text-xl">Technologies</h1>
+									<h1 class="text-lg md:text-xl mt-4">Technologies</h1>
 									<div class="flex justify-between">
 										<p>React</p>
 										<p class="text-cyan-300">LV2</p>
@@ -533,12 +533,12 @@
 						</div>
 					{:else if showJob}
 						<div
-							class="el1 m-5 flex flex-col"
+							class="el1 m-5 h-5/6"
 							in:fly={{ x: 100, duration: 400, delay: 150 }}
 							out:fly={{ x: 100, duration: 400 }}
 						>
 							<div
-								class="grid grid-cols-12 justify-items-start gap-4 font-minecraftia text-white [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)] w-full"
+								class="grid grid-cols-12 justify-items-start gap-2 md:gap-4 font-minecraftia text-white [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)] w-full"
 							>
 								<h1 class="col-span-12 text-xl">Current Jobs</h1>
 								<p class="col-span-5">Relay</p>
