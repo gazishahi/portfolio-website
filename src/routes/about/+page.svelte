@@ -283,7 +283,7 @@
 			</div>
 
 			<div
-				class="bg-gradient-to-t from-indigo-600 text-sm md:text-md to-blue-500 border-4 border-slate-400 rounded-lg mr-1 md:h-2/3 h-96 w-full relative mb-1 md:mb-0"
+				class="bg-gradient-to-t from-indigo-600 text-sm md:text-md to-blue-500 border-4 border-slate-400 rounded-lg mr-1 md:h-2/3 xl:h-1/2 h-[440px] w-full relative mb-1 md:mb-0"
 			>
 				<main>
 					{#if showStatus}
@@ -314,33 +314,33 @@
 												mode={'cascade'}
 												delay={1500}
 											>
-												<div class="space-y-0">
+												<div class="space-y-0 text-pretty">
 													<p>Hey! I'm Gazi, thanks for visiting my personal website!</p>
-													<div class="flex whitespace-pre">
-														<p>I'm a software engineer at &nbsp;</p>
-														<a href="https://www.relayislam.com/" class="text-cyan-300">Relay</a>
+													<div class="md:flex md:whitespace-pre">
+														<p>I'm a software engineer at&nbsp;</p>
+														<a href="https://www.relayislam.com/" class="text-cyan-300">
+															Relay&nbsp
+														</a>
+														<p>with a passion for web and mobile development.</p>
 													</div>
-													<p>
-														with a passion for web and mobile development. Some things about me...
-													</p>
+													<p>Some things about me...</p>
 												</div>
 											</Typewriter>
 										{:else}
-											<div class="space-y-0 fix-text">
+											<div class="space-y-0 text-pretty">
 												<p>Hey! I'm Gazi, thanks for visiting my personal website!</p>
-												<div class="flex whitespace-pre">
-													<p>I'm a software engineer at &nbsp;</p>
-													<a href="https://www.relayislam.com/" class="text-cyan-300">Relay</a>
+												<div class="md:flex md:whitespace-pre">
+													<p>I'm a software engineer at&nbsp;</p>
+													<a href="https://www.relayislam.com/" class="text-cyan-300">Relay&nbsp</a>
+													<p>with a passion for web and mobile development.</p>
 												</div>
-												<p>
-													with a passion for web and mobile development. Some things about me...
-												</p>
+												<p>Some things about me...</p>
 											</div>
 										{/if}
 									</div>
 								</div>
 							</div>
-							<div class="grid grid-cols-2 divide-x-2">
+							<div class="md:grid md:grid-cols-2 md:divide-x-2">
 								<div class="flex flex-col justify-start">
 									{#if typing}
 										<Typewriter
@@ -372,7 +372,7 @@
 										</div>
 									{/if}
 								</div>
-								<div class="flex justify-start">
+								<div class="md:flex justify-start">
 									{#if typing}
 										<Typewriter
 											cursor={false}
@@ -384,7 +384,7 @@
 											<div class="m-3 space-y-3">
 												<p>I like:</p>
 												<p>Listening to the voices in my head</p>
-												<p>Playing video games (playing Jedi Survivor)</p>
+												<p>Playing video games (playing Forspoken)</p>
 												<p>Running and working out</p>
 											</div>
 										</Typewriter>
@@ -392,13 +392,13 @@
 										<div class="m-3 space-y-3">
 											<p>I like:</p>
 											<p>Listening to the voices in my head</p>
-											<p>Playing video games (pray I beat Elden Ring)</p>
+											<p>Playing video games (playing Forspoken)</p>
 											<p>Running and working out</p>
 										</div>
 									{/if}
 								</div>
 							</div>
-							<div class="m-3">
+							<div class="hidden md:flex md:flex-col m-3">
 								{#if typing}
 									<Typewriter
 										cursor={false}
@@ -614,7 +614,7 @@
 			</div>
 		</div>
 
-		<div class="flex flex-col rounded-lg md:w-1/5">
+		<div class="flex flex-col rounded-lg md:w-1/5 md:h-[95%] xl:h-[78%]">
 			<div
 				class="hidden md:flex md:flex-col bg-gradient-to-t from-indigo-600 to-blue-500 text-white text-sm md:text-xl font-minecraftia justify-start border-4 border-slate-400 rounded-lg mb-1 pb-3 md:pb-0 md:h-2/3 w-full [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)]"
 			>
@@ -727,9 +727,9 @@
 		grid-row: 1/2;
 	}
 
-	.fix-text {
+	/* .fix-text {
 		white-space: pre;
-	}
+	} */
 
 	main {
 		font-family: sans-serif;
