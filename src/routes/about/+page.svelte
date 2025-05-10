@@ -545,13 +545,13 @@
 								<p class="col-span-6 text-cyan-300">Software Engineer</p>
 								<p class="col-span-1">2024</p>
 
+								<hr class="w-full mt-2 mb-5 col-span-12" />
+
+								<h1 class="col-span-12 text-xl">Completed Jobs</h1>
 								<p class="col-span-5">Headstarter AI</p>
 								<p class="col-span-6 text-cyan-300">Software Engineering Fellow</p>
 								<p class="col-span-1">2024</p>
 
-								<hr class="w-full mt-2 mb-5 col-span-12" />
-
-								<h1 class="col-span-12 text-xl">Completed Jobs</h1>
 								<p class="col-span-5">Tech Incubator at Queens College</p>
 								<p class="col-span-6 text-cyan-300">Software Developer Intern</p>
 								<p class="col-span-1">2023</p>
