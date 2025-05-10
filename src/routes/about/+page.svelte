@@ -107,10 +107,10 @@
 	<div class="md:flex rounded-lg size-11/12 2xl:size-4/5">
 		<div class="md:w-4/5 mr-1">
 			<div
-				class="md:flex bg-gradient-to-t from-indigo-600 to-blue-500 border-4 border-slate-400 rounded-lg mb-1 h-[287px] md:h-1/3 w-full"
+				class="md:flex bg-gradient-to-t from-indigo-600 to-blue-500 border-4 border-slate-400 rounded-lg mb-1 h-[260px] md:h-[28%] w-full"
 			>
 				<div class="flex w-full md:w-fit justify-center md:justify-normal mt-5">
-					<img src={sprite} alt="Sprite" class="w-30 h-40 flex mr-6 md:mt-0 ml-3" />
+					<img src={sprite} alt="Sprite" class="w-30 h-40 flex mr-6 mt-6 md:mt-0 ml-3" />
 
 					<div
 						class="mr-3 md:hidden space-y-3 md:space-y-0 justify-between text-white [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)] font-minecraftia"
@@ -140,12 +140,25 @@
 								</Tooltip>
 								<Query />
 							</div>
+
 							<div class="hidden md:block w-2/3 bg-gray-200 rounded-full h-1.5 dark:bg-gray-700">
 								<div
 									class="bg-gradient-to-r from-yellow-500 to-yellow-200 h-1.5 rounded-full"
 									style="width: {birthdayPercentage}%"
 								></div>
 							</div>
+						</div>
+						<div class="flex text-sm space-x-5">
+							<Tooltip arrow={false} animation="fade" content="Days since last birthday">
+								<p class="text-cyan-300">Current EXP</p>
+							</Tooltip>
+							<p>{365 - yearsSinceBirthday}</p>
+						</div>
+						<div class="flex text-sm space-x-5">
+							<Tooltip arrow={false} animation="fade" content="Days until next birthday">
+								<p class="text-cyan-300">To next level</p>
+							</Tooltip>
+							<p>{yearsSinceBirthday.toFixed(0)}</p>
 						</div>
 					</div>
 				</div>
@@ -156,12 +169,11 @@
 						<p>Gazi Shahi</p>
 						<p>Software Engineer</p>
 					</div>
-					<div class="flex mt-5 justify-between md:mr-0 mr-8 w-full">
+					<div class="hidden md:flex mt-5 justify-between md:mr-0 mr-8 w-full">
 						<div class="hidden md:flex">
 							<Tooltip arrow={false} animation="fade" content="Age in years">
 								<p class="pr-5 text-cyan-300">LV</p>
 							</Tooltip>
-
 							<p>{ageYears}</p>
 						</div>
 						<div class="flex space-x-5">
@@ -176,10 +188,9 @@
 							<Tooltip arrow={false} animation="fade" content="Age in days">
 								<p class="pr-5 text-cyan-300">HP</p>
 							</Tooltip>
-
 							<p>{ageDays}</p>
 						</div>
-						<div class="flex space-x-5">
+						<div class="hidden md:flex space-x-5">
 							<Tooltip arrow={false} animation="fade" content="Days until next birthday">
 								<p>To next level:</p>
 							</Tooltip>
@@ -203,6 +214,70 @@
 								style="width: {birthdayPercentage}%"
 							></div>
 						</div>
+					</div>
+				</div>
+			</div>
+
+			<div>
+				<div
+					class="md:hidden grid grid-rows-3 grid-cols-2 md:flex-col bg-gradient-to-t from-indigo-600 to-blue-500 text-white text-sm md:text-xl font-minecraftia justify-center border-4 border-slate-400 rounded-lg mb-1 md:pb-0 md:h-2/3 w-full [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)]"
+				>
+					<div class="hover:show-pointer">
+						<button
+							on:click={playSelect}
+							on:mouseenter={playHover}
+							on:mouseleave={stopHover}
+							on:click={toggleStatus}
+							class="flex justify-center mt-5 ml-12 [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)]"
+						>
+							Status
+						</button>
+						{#if showStatus}
+							<img src={pointer} alt="pointer" class="showPointer h-12 w-12" />
+						{/if}
+
+						<img src={pointer} alt="pointer" class="pointer h-12 w-12" />
+					</div>
+					<div class="hover:show-pointer">
+						<button
+							on:click={playSelect}
+							on:mouseenter={playHover}
+							on:click={toggleAbilities}
+							class="justify-center mt-5 ml-12 [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)]"
+						>
+							Abilities
+						</button>
+						{#if showAbilities}
+							<img src={pointer} alt="pointer" class="showPointer h-12 w-12" />
+						{/if}
+						<img src={pointer} alt="pointer" class="pointer h-12 w-12" />
+					</div>
+					<div class="mt-4 col-span-2 border-t-4 border-slate-400"></div>
+
+					<div class="hover:show-pointer">
+						<button
+							on:click={playSelect}
+							on:mouseenter={playHover}
+							on:click={toggleJob}
+							class="justify-center ml-12 [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)]"
+						>
+							Job
+						</button>
+						{#if showJob}
+							<img src={pointer} alt="pointer" class="showPointer h-12 w-12" />
+						{/if}
+						<img src={pointer} alt="pointer" class="pointer h-12 w-12" />
+					</div>
+					<div class="hover:show-pointer">
+						<a
+							on:click={playSelect}
+							on:mouseenter={playHover}
+							class="flex justify-start ml-12 [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)]"
+							href="https://dl.dropbox.com/scl/fi/gxrwno0lp8vgyzkh4iknz/Gazi-Shahi-Resume.pdf?rlkey=18kd5x54tohr1gn77jzrr1wa6&st=bins3mca&dl=0"
+						>
+							Resume
+						</a>
+						<img src={pointer} alt="pointer" class="pointer h-12 w-12" />
 					</div>
 				</div>
 			</div>
@@ -244,10 +319,6 @@
 													<div class="flex whitespace-pre">
 														<p>I'm a software engineer at &nbsp;</p>
 														<a href="https://www.relayislam.com/" class="text-cyan-300">Relay</a>
-														<p>&nbsp; and a software engineering fellow at &nbsp;</p>
-														<a href="https://www.headstarter.co/" class="text-cyan-300">
-															Headstarter AI
-														</a>
 													</div>
 													<p>
 														with a passion for web and mobile development. Some things about me...
@@ -260,10 +331,6 @@
 												<div class="flex whitespace-pre">
 													<p>I'm a software engineer at &nbsp;</p>
 													<a href="https://www.relayislam.com/" class="text-cyan-300">Relay</a>
-													<p>&nbsp; and a software engineering fellow at &nbsp;</p>
-													<a href="https://www.headstarter.co/" class="text-cyan-300">
-														Headstarter AI
-													</a>
 												</div>
 												<p>
 													with a passion for web and mobile development. Some things about me...
@@ -288,16 +355,8 @@
 												<p>The City College of New York</p>
 											</div>
 											<div class="flex justify-between m-3">
-												<p>Graduated:</p>
-												<p>December 2023</p>
-											</div>
-											<div class="flex justify-between m-3">
 												<p>Degree:</p>
-												<p>Bachelor's of Engineering</p>
-											</div>
-											<div class="flex justify-between m-3">
-												<p>Major:</p>
-												<p>Computer Engineering</p>
+												<p>BE in Computer Engineering</p>
 											</div>
 										</Typewriter>
 									{:else}
@@ -307,16 +366,8 @@
 												<p>The City College of New York</p>
 											</div>
 											<div class="flex justify-between">
-												<p>Graduated:</p>
-												<p>December 2023</p>
-											</div>
-											<div class="flex justify-between">
 												<p>Degree:</p>
-												<p>Bachelor's of Engineering</p>
-											</div>
-											<div class="flex justify-between">
-												<p>Major:</p>
-												<p>Computer Engineering</p>
+												<p>BE in Computer Engineering</p>
 											</div>
 										</div>
 									{/if}
@@ -565,7 +616,7 @@
 
 		<div class="flex flex-col rounded-lg md:w-1/5">
 			<div
-				class="flex md:flex-col bg-gradient-to-t from-indigo-600 to-blue-500 text-white text-sm md:text-xl font-minecraftia justify-start border-4 border-slate-400 rounded-lg mb-1 pb-3 md:pb-0 md:h-2/3 w-full [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)]"
+				class="hidden md:flex md:flex-col bg-gradient-to-t from-indigo-600 to-blue-500 text-white text-sm md:text-xl font-minecraftia justify-start border-4 border-slate-400 rounded-lg mb-1 pb-3 md:pb-0 md:h-2/3 w-full [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)]"
 			>
 				<div class="hover:show-pointer">
 					<button
@@ -627,7 +678,7 @@
 			<div
 				class="flex justify-center bg-gradient-to-t from-indigo-600 to-blue-500 p-1 text-white text-sm md:text-xl font-minecraftia border-4 border-slate-400 rounded-lg mb-1 h-14 md:h-1/7 [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)]"
 			>
-				<p class="md:mt-3">New York City</p>
+				<p class="mt-4 md:mt-3">New York City</p>
 			</div>
 
 			<div
