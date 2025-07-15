@@ -26,7 +26,7 @@
 	$: seconds = time.getSeconds().toString().padStart(2, '0');
 
 	// Replace with your last birthday date
-	const lastBirthday = new Date('2024-05-21');
+	const lastBirthday = new Date('2025-05-21');
 	const birthDay = new Date('2001-05-21');
 
 	function daysSince(date) {
@@ -283,7 +283,7 @@
 			</div>
 
 			<div
-				class="bg-gradient-to-t from-indigo-600 text-sm md:text-md to-blue-500 border-4 border-slate-400 rounded-lg mr-1 md:h-2/3 xl:h-1/2 h-[460px] w-full relative mb-1 md:mb-0"
+				class="bg-gradient-to-t from-indigo-600 text-sm md:text-md to-blue-500 border-4 border-slate-400 rounded-lg mr-1 md:h-2/3 xl:h-2/3 h-[460px] w-full relative mb-1 md:mb-0"
 			>
 				<main>
 					{#if showStatus}
@@ -614,7 +614,7 @@
 			</div>
 		</div>
 
-		<div class="flex flex-col rounded-lg md:w-1/5 md:h-[95%] xl:h-[78%]">
+		<div class="flex flex-col rounded-lg md:w-1/5 md:h-[95%] xl:h-[95%]">
 			<div
 				class="hidden md:flex md:flex-col bg-gradient-to-t from-indigo-600 to-blue-500 text-white text-sm md:text-xl font-minecraftia justify-start border-4 border-slate-400 rounded-lg mb-1 pb-3 md:pb-0 md:h-2/3 w-full [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)]"
 			>
@@ -676,7 +676,7 @@
 			</div>
 
 			<div
-				class="flex justify-center bg-gradient-to-t from-indigo-600 to-blue-500 p-1 text-white text-sm md:text-xl font-minecraftia border-4 border-slate-400 rounded-lg mb-1 h-14 md:h-1/7 [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)]"
+				class="flex justify-center bg-gradient-to-t from-indigo-600 to-blue-500 p-1 text-white text-sm md:text-lg font-minecraftia border-4 border-slate-400 rounded-lg mb-1 h-14 md:h-1/7 [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)]"
 			>
 				<p class="mt-4 md:mt-3">New York City</p>
 			</div>
@@ -684,12 +684,12 @@
 			<div
 				class=" text-white bg-gradient-to-t from-indigo-600 to-blue-500 text-lg font-minecraftia mb-3 md:mb-0 border-4 border-slate-400 rounded-lg h-1/7 [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)]"
 			>
-				<div class="ml-5 mr-5 mt-5 flex justify-between">
+				<div class="ml-5 mr-5 mt-5 flex md:flex-col lg:flex-row justify-between">
 					<p>Time</p>
 					<p>{hours} : {minutes} : {seconds}</p>
 				</div>
 
-				<div class="ml-5 mr-5 mt-5 mb-5 flex justify-between">
+				<div class="ml-5 mr-5 mt-5 mb-5 flex md:flex-col lg:flex-row justify-between">
 					<Tooltip arrow={false} animation="fade" content="LeetCode Problems Solved">
 						<p>Gil</p>
 					</Tooltip>
