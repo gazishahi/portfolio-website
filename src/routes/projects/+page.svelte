@@ -12,8 +12,36 @@
 	// Project data structure
 	const projects = [
 		{
+			id: 'khidma',
+			title: 'Stealth',
+			status: 'ongoing',
+			description: 'Building...',
+			progress: 70,
+			completedTasks: [
+				'Authentication',
+				'Email/SMS notifications',
+				'Account management',
+				'Payment processing',
+				'Admin dashboard',
+				'User dashboard',
+				'User profile',
+				'User settings',
+			],
+			currentTasks: [
+				'Analytics',
+				'User tagging',
+				'Additional user account types',
+				'Import user data',
+				'More email/SMS triggers',
+				'Optimizations'
+			],
+			techStack: ['React', 'Supabase', 'Typescript', 'Tailwind'],
+			github: null,
+			live: null,
+		},
+		{
 			id: 'headstarter',
-			title: 'Headstarter AI Fellowship',
+			title: 'Headstarter AI',
 			status: 'completed',
 			description: 'A 7-week intensive AI fellowship where I pursue 5 quests to enhance my mastery as a software engineer.',
 			progress: 100,
@@ -24,14 +52,13 @@
 			],
 			currentTasks: [
 			],
-			techStack: ['Svelte', 'Tailwind CSS', 'Python', 'Next.js', 'Firebase'],
+			techStack: ['Svelte', 'Tailwind', 'Python', 'Next.js', 'Firebase'],
 			github: null,
 			live: null,
-			icon: '🎯'
 		},
 		{
 			id: 'relay',
-			title: 'Relay Mobile Applications',
+			title: 'Relay Mobile Apps',
 			status: 'completed',
 			description: 'A platform to help those struggling with faith or seeking to learn the fundamentals of Islam.',
 			progress: 100,
@@ -46,13 +73,12 @@
 				'TBD'
 			],
 			techStack: ['SwiftUI', 'AWS', 'SST', 'Kotlin'],
-			github: null,
-			live: null,
-			icon: '🕌'
+			github: 'https://github.com/Relay-Islam',
+			live: 'https://www.relayislam.com/',
 		},
 		{
 			id: 'codehive',
-			title: 'CodeHive Frontend',
+			title: 'CodeHive',
 			status: 'abandoned',
 			description: 'A collaborative platform designed to help software engineers struggling with technical skills.',
 			progress: 20,
@@ -67,7 +93,6 @@
 			techStack: ['React', 'Spring Boot', 'Express.js', 'DynamoDB', 'Neo4j'],
 			github: null,
 			live: null,
-			icon: '🐝'
 		}
 	];
 
@@ -82,24 +107,6 @@
 	function selectProject(projectId) {
 		selectedProject = projects.find(p => p.id === projectId);
 		playSelect();
-	}
-
-	function getStatusColor(status) {
-		switch (status) {
-			case 'ongoing': return 'bg-yellow-500';
-			case 'completed': return 'bg-green-500';
-			case 'abandoned': return 'bg-red-500';
-			default: return 'bg-gray-500';
-		}
-	}
-
-	function getStatusIcon(status) {
-		switch (status) {
-			case 'ongoing': return '🔄';
-			case 'completed': return '✅';
-			case 'abandoned': return '❌';
-			default: return '❓';
-		}
 	}
 
 	// Group projects by status
@@ -125,22 +132,30 @@
 		<!-- Ongoing Projects Section -->
 		{#if ongoingProjects.length > 0}
 			<div class="mb-2">
-				<div class="bg-gradient-to-t from-yellow-600 to-orange-500 border-4 border-slate-400 rounded-lg p-4 mb-2">
+				<div class="bg-gradient-to-t from-indigo-600 to-blue-500 border-4 border-slate-400 rounded-lg p-4 mb-1">
 					<h2 class="font-minecraftia text-white text-2xl md:text-3xl [text-shadow:_0_3px_0_rgb(0_0_0_/_60%)] flex items-center justify-center">
 						Ongoing Quests ({ongoingProjects.length})
 					</h2>
 				</div>
 				<div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-2">
 					{#each ongoingProjects as project (project.id)}
+					<!-- Hover Pointer -->
+					<div class="flex justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+						<img src={pointer} alt="pointer" class="h-8 w-8" />
+					</div>
 						<div 
 							class="group cursor-pointer transform transition-all duration-300 "
 							on:click={() => selectProject(project.id)}
 							on:mouseenter={playHover}
 						>
-							<div class="bg-gradient-to-t from-indigo-600 to-blue-500 border-4 border-slate-400 rounded-lg p-6 h-full shadow-2xl hover:shadow-3xl transition-shadow duration-300">
+							<div class="bg-gradient-to-t from-indigo-600 to-blue-500 border-4 border-slate-400 rounded-lg p-6 h-full">
 								<!-- Project Header -->
 								<div class="flex items-center justify-between mb-4">
 									<div class="flex items-center space-x-3">
+													<!-- Hover Pointer -->
+								<div class="flex justify-start opacity-0 group-hover:opacity-100">
+									<img src={pointer} alt="pointer" class="h-8 w-8" />
+								</div>
 										<div>
 											<h3 class="font-minecraftia text-white text-xl [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)]">
 												{project.title}
@@ -157,7 +172,7 @@
 								<!-- Progress Bar -->
 								<div class="w-full bg-slate-700 rounded-full h-3 mb-4">
 									<div 
-										class="bg-gradient-to-t from-yellow-400 to-orange-500 h-3 rounded-full transition-all duration-500"
+										class="bg-gradient-to-r from-yellow-500 to-yellow-200 h-3 rounded-full transition-all duration-500"
 										style="width: {project.progress}%"
 									></div>
 								</div>
@@ -181,10 +196,7 @@
 									</div>
 								</div>
 
-								<!-- Hover Pointer -->
-								<div class="flex justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-									<img src={pointer} alt="pointer" class="h-8 w-8" />
-								</div>
+								
 							</div>
 						</div>
 					{/each}
@@ -202,15 +214,20 @@
 				</div>
 				<div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-2">
 					{#each completedProjects as project (project.id)}
+					<!-- Hover Pointer -->
+					
 						<div 
 							class="group cursor-pointer transform transition-all duration-300 "
 							on:click={() => selectProject(project.id)}
 							on:mouseenter={playHover}
 						>
-							<div class="bg-gradient-to-t from-indigo-600 to-blue-500 border-4 border-slate-400 rounded-lg p-6 h-full shadow-2xl hover:shadow-3xl transition-shadow duration-300">
+							<div class="bg-gradient-to-t from-indigo-600 to-blue-500 border-4 border-slate-400 rounded-lg p-6 h-full">
 								<!-- Project Header -->
 								<div class="flex items-center justify-between mb-4">
 									<div class="flex items-center space-x-3">
+										<div class="flex justify-start opacity-0 group-hover:opacity-100">
+											<img src={pointer} alt="pointer" class="h-8 w-8" />
+										</div>
 										<div>
 											<h3 class="font-minecraftia text-white text-xl [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)]">
 												{project.title}
@@ -227,7 +244,7 @@
 								<!-- Progress Bar -->
 								<div class="w-full bg-slate-700 rounded-full h-3 mb-4">
 									<div 
-										class="bg-gradient-to-t from-green-400 to-emerald-500 h-3 rounded-full transition-all duration-500"
+										class="bg-gradient-to-r from-yellow-500 to-yellow-200 h-3 rounded-full transition-all duration-500"
 										style="width: {project.progress}%"
 									></div>
 								</div>
@@ -251,10 +268,7 @@
 									</div>
 								</div>
 
-								<!-- Hover Pointer -->
-								<div class="flex justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-									<img src={pointer} alt="pointer" class="h-8 w-8" />
-								</div>
+								
 							</div>
 						</div>
 					{/each}
@@ -277,10 +291,15 @@
 							on:click={() => selectProject(project.id)}
 							on:mouseenter={playHover}
 						>
-							<div class="bg-gradient-to-t from-indigo-600 to-blue-500 border-4 border-slate-400 rounded-lg p-6 h-full shadow-2xl hover:shadow-3xl transition-shadow duration-300 opacity-80">
+							<div class="bg-gradient-to-t from-indigo-600 to-blue-500 border-4 border-slate-400 rounded-lg p-6 h-full opacity-80">
 								<!-- Project Header -->
 								<div class="flex items-center justify-between mb-4">
+								
 									<div class="flex items-center space-x-3">
+											<!-- Hover Pointer -->
+								<div class="flex justify-start opacity-0 group-hover:opacity-100">
+									<img src={pointer} alt="pointer" class="h-8 w-8" />
+								</div>
 										<div>
 											<h3 class="font-minecraftia text-white text-xl [text-shadow:_0_2px_0_rgb(0_0_0_/_60%)]">
 												{project.title}
@@ -297,7 +316,7 @@
 								<!-- Progress Bar -->
 								<div class="w-full bg-slate-700 rounded-full h-3 mb-4">
 									<div 
-										class="bg-gradient-to-t from-red-400 to-pink-500 h-3 rounded-full transition-all duration-500"
+										class="bg-gradient-to-r from-yellow-500 to-yellow-200 h-3 rounded-full transition-all duration-500"
 										style="width: {project.progress}%"
 									></div>
 								</div>
@@ -319,11 +338,6 @@
 											</span>
 										{/each}
 									</div>
-								</div>
-
-								<!-- Hover Pointer -->
-								<div class="flex justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-									<img src={pointer} alt="pointer" class="h-8 w-8" />
 								</div>
 							</div>
 						</div>
@@ -370,7 +384,7 @@
 						</div>
 						<div class="w-full bg-slate-700 rounded-full h-4">
 							<div 
-								class="h-4 rounded-full transition-all duration-1000 {selectedProject.status === 'ongoing' ? 'bg-gradient-to-t from-yellow-400 to-orange-500' : selectedProject.status === 'completed' ? 'bg-gradient-to-t from-green-400 to-emerald-500' : 'bg-gradient-to-t from-red-400 to-pink-500'}"
+								class="h-4 rounded-full transition-all duration-1000 bg-gradient-to-r from-yellow-500 to-yellow-200"
 								style="width: {selectedProject.progress}%"
 							></div>
 						</div>
